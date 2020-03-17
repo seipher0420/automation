@@ -16,4 +16,7 @@ public class AutomationConstants{
 	public static final String FIREFOX_BROWSER = "firefox";
 	
 	
+	public static final String TEST_PASSED = "Passed";
+	public static final String TEST_FAILED = "Failed";	
+	
 }

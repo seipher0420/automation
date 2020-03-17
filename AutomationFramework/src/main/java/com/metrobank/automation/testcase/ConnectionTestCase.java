@@ -43,14 +43,15 @@ public class ConnectionTestCase extends mainConnection{
 		title = driver.getTitle();
 		
 		try{
+			//If True get Screenshot
 			Assert.assertTrue(title != null);
-		
 			tempScreenshot = TestUtil.getScreenshot(driver);
-			extent.log(LogStatus.INFO, "Step 1: Get Title: " + title);
+			extent.log(LogStatus.INFO, "Step 1: Get Title: " + title + ": " + AutomationConstants.TEST_PASSED);
 			extent.attachScreenshot(tempScreenshot);
 			
 		}catch(AssertionError e){
-			extent.log(LogStatus.INFO, "Failed");
+			//False log Test Failed
+			extent.log(LogStatus.INFO, "Step 1: Get Title: " + AutomationConstants.TEST_FAILED);
 		}
 		
 	extent.endTest();
