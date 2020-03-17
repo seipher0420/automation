@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="13747" started-at="2020-03-17T03:03:21Z" finished-at="2020-03-17T03:03:35Z">
+  <suite name="Default suite" duration-ms="3002" started-at="2020-03-17T05:29:15Z" finished-at="2020-03-17T05:29:18Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="13747" started-at="2020-03-17T03:03:21Z" finished-at="2020-03-17T03:03:35Z">
-      <class name="main.java.Constants.LoadConnection">
-        <test-method status="PASS" signature="testConnection()[pri:0, instance:main.java.Constants.LoadConnection@178f375]" name="testConnection" duration-ms="13730" started-at="2020-03-17T11:03:21Z" finished-at="2020-03-17T11:03:35Z">
+    <test name="Default test" duration-ms="3002" started-at="2020-03-17T05:29:15Z" finished-at="2020-03-17T05:29:18Z">
+      <class name="main.test.TestConnection">
+        <test-method status="PASS" signature="testConnectionCase()[pri:0, instance:main.test.TestConnection@3b1d11]" name="testConnectionCase" duration-ms="2986" started-at="2020-03-17T13:29:15Z" finished-at="2020-03-17T13:29:18Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testConnection -->
-      </class> <!-- main.java.Constants.LoadConnection -->
+        </test-method> <!-- testConnectionCase -->
+      </class> <!-- main.test.TestConnection -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

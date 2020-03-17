@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="main.java.Constants.LoadConnection">
+      <class name="main.test.TestConnection">
         <methods>
-          <include name="testConnection"/>
+          <include name="testConnectionCase"/>
         </methods>
-      </class> <!-- main.java.Constants.LoadConnection -->
+      </class> <!-- main.test.TestConnection -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

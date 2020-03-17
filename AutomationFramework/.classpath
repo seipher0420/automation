@@ -9,5 +9,12 @@
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/selenium-java-3.141.59/libs/guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/selenium-java-3.141.59/libs/okhttp-3.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/selenium-java-3.141.59/libs/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/httpclient-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/httpmime-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/mongodb-driver-3.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/mongodb-driver-core-3.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files (1)/extentreports-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files (2)/commons-io-2.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
