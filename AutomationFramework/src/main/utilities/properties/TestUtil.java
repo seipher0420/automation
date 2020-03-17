@@ -8,7 +8,18 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+/*
+ * @Description
+ * For generic Utilities of TestCases
+ * 
+ */
+
 public class TestUtil {
+	
+	/*
+	 * @Description
+	 * GetScreenshot for validations
+	 */
 
 	public static String getScreenshot(WebDriver driver){
 		TakesScreenshot takeScreenshot = (TakesScreenshot) driver;
