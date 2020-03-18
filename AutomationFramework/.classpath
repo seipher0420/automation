@@ -14,7 +14,7 @@
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/httpmime-4.5.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/mongodb-driver-3.12.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files/mongodb-driver-core-3.12.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files (1)/extentreports-1.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/donell/Downloads/jar_files (2)/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/extentreports-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
