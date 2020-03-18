@@ -1,4 +1,4 @@
-package main.utilities.properties;
+package main.utilities.Helpers;
 
 import java.io.File;
 import java.io.IOException;

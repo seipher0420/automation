@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import main.java.com.metrobank.automation.bstract.mainConnection;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
-import main.utilities.properties.TestUtil;
+import main.utilities.Helpers.TestUtil;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
