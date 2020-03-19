@@ -1,5 +1,10 @@
 package main.utilities.Helpers;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogLevel;
 import com.relevantcodes.extentreports.LogStatus;
@@ -9,14 +14,18 @@ import main.java.com.metrobank.automation.generics.AutomationConstants;
 
 
 
-public class generateReport {
+public class GenerateReport {
 	
 	String userDirectory = System.getProperty(AutomationConstants.USER_DIRECTORY);
 	ExtentReports extent;
 	
 	public void createReportFile(String className, String testCaseName){
 		extent = ExtentReports.get(className);
-		extent.init(userDirectory+ AutomationConstants.TEST_REPORT_FOLDER + testCaseName + ".html", true);
+
+		   Format f = new SimpleDateFormat("MM/dd/yy");
+		      String strDate = f.format(new Date());
+		      System.out.println("Current Date = "+strDate);
+		extent.init(userDirectory+ AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/" + testCaseName + ".html", true);
 		
 	}
 	
