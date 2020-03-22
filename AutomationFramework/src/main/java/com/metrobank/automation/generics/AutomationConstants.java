@@ -5,7 +5,7 @@ package main.java.com.metrobank.automation.generics;
 public class AutomationConstants{
 
 	//Constants Settings on property files
-	public static final String PROPERTY_FILE = "/src/main/utilities/properties/main.properties";
+	public static final String PROPERTY_FILE = "/src/main/java/com/metrobank/automation/core/utilities/properties/main.properties";
 	public static final String USER_DIRECTORY = "user.dir";
 	public static final String TEST_REPORT_FOLDER = "/TestReports/";
 

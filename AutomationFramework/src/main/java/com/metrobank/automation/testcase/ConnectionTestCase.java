@@ -2,9 +2,9 @@ package main.java.com.metrobank.automation.testcase;
 
 import java.io.IOException;
 
-import main.java.com.metrobank.automation.bstract.mainConnection;
+import main.java.com.metrobank.automation.core.base.mainConnection;
+import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
-import main.utilities.Helpers.TestUtil;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -33,7 +33,7 @@ public class ConnectionTestCase extends mainConnection{
 		ExtentReports extent = ExtentReports.get(ConnectionTestCase.class);
 		
 		//Change report.html to the name of TestCase 
-		extent.init(userDirectory+ AutomationConstants.TEST_REPORT_FOLDER + "nameOfTestCase", true);
+		extent.init(userDirectory+ AutomationConstants.TEST_REPORT_FOLDER + nameOfTestCase, true);
 		
 		extent.startTest("Verify browser Connection");
 		
