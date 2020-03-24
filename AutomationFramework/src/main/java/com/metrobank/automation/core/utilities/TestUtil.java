@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
+import main.java.com.metrobank.automation.generics.AutomationConstants;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -80,6 +82,35 @@ public class TestUtil {
 		driver.switchTo().window(mainWindow);
 	}
 	
+	//Wait time 1-5 seconds
+	public static  void waitTime(int seconds) throws InterruptedException{
+		switch(seconds){
+		case 1:
+			Thread.sleep(1000);
+			break;
+		
+		case 2:
+			Thread.sleep(2000);
+			break;
+		
+		case 3:
+			Thread.sleep(3000);
+			break;
+		
+		case 4:
+			Thread.sleep(4000);
+			break;
+		
+		case 5:
+			Thread.sleep(5000);
+			break;
+		default:
+			Thread.sleep(1000);
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Default set to 1 second");
+		}
+		
+		
+	}
 
 	
 	

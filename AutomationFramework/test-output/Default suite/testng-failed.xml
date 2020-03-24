@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="main.java.com.metrobank.automation.testcase.ConnectionTestCase">
+      <class name="main.java.com.metrobank.automation.testcase.TestCase01">
         <methods>
-          <include name="testConnectionCase"/>
+          <include name="testCase"/>
         </methods>
-      </class> <!-- main.java.com.metrobank.automation.testcase.ConnectionTestCase -->
+      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase01 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
