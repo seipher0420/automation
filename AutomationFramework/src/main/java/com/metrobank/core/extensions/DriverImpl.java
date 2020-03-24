@@ -92,9 +92,21 @@ public class DriverImpl implements Driver {
 		return driver.switchTo();
 	}
 
+
+
 	
 	/************ Extension Methods *************/
 	
+	/** @Description 
+	 * Driver navigates to specified url
+	 * 
+	 */
+	@Override
+	public void NavigateToUrl(String url) {
+		driver.navigate().to(url);
+		
+//		Textbox(driver, By.id("xyz"));
+	}
 	
 	
 }

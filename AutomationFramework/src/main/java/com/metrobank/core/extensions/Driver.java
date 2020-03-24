@@ -10,6 +10,6 @@ import org.openqa.selenium.WebDriver;
  * Interface for Driver Extensions
  *
  */
-public interface Driver extends WebDriver{
-
+public interface Driver extends WebDriver {
+	void NavigateToUrl(String url);
 }
