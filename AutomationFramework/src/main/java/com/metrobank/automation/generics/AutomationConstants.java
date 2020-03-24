@@ -15,8 +15,9 @@ public class AutomationConstants{
 	public static final String INTERNET_EXPLORER_BROWSER = "internetexplorer";
 	public static final String FIREFOX_BROWSER = "firefox";
 	
-	
+	//Test Logs
 	public static final String TEST_PASSED = "Passed";
 	public static final String TEST_FAILED = "Failed";	
+	public static final String FRAMEWORK_LOGS = "Automation Framework: ";
 	
 }

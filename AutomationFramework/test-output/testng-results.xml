@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="12971" started-at="2020-03-22T23:06:29Z" finished-at="2020-03-22T23:06:42Z">
+  <suite name="Default suite" duration-ms="25399" started-at="2020-03-24T02:22:13Z" finished-at="2020-03-24T02:22:38Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="12971" started-at="2020-03-22T23:06:29Z" finished-at="2020-03-22T23:06:42Z">
-      <class name="main.java.com.metrobank.automation.testcase.ConnectionTestCase">
-        <test-method status="PASS" signature="testConnectionCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.ConnectionTestCase@1c7cbad]" name="testConnectionCase" duration-ms="12955" started-at="2020-03-23T07:06:29Z" finished-at="2020-03-23T07:06:42Z">
+    <test name="Default test" duration-ms="25399" started-at="2020-03-24T02:22:13Z" finished-at="2020-03-24T02:22:38Z">
+      <class name="main.java.com.metrobank.automation.testcase.TestCase01">
+        <test-method status="PASS" signature="testCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase01@120ebad]" name="testCase" duration-ms="25379" started-at="2020-03-24T10:22:13Z" finished-at="2020-03-24T10:22:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testConnectionCase -->
-      </class> <!-- main.java.com.metrobank.automation.testcase.ConnectionTestCase -->
+        </test-method> <!-- testCase -->
+      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase01 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
