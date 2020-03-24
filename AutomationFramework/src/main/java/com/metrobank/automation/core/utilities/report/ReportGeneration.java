@@ -8,11 +8,8 @@ import java.util.Date;
 
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
-
-
-
-
-
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -29,8 +26,17 @@ public abstract class ReportGeneration {
 	 public static ExtentReports extent;
 	 public static ExtentTest test;
 	 
+	 
+	 public static synchronized ExtentReports GetExtent() {
+		    if (extent != null) {
+		    	return extent;
+		    }else{
+		    	  return extent = new ExtentReports();
+		    }
+	 }
+	 
 
-	@BeforeTest
+	@BeforeClass
 	 public void generateReport(String documentTitle, String reportName){
 		 
 	    	String path;
@@ -46,15 +52,15 @@ public abstract class ReportGeneration {
 			      }else{
 			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has already been created or not found " + path);
 			      }
-			   
+			 
 	        htmlReporter = new ExtentHtmlReporter(path + reportName + ".html");
-	        	        
-	        extent = new ExtentReports();
+	        GetExtent();
 	        extent.attachReporter(htmlReporter);
 
 	        htmlReporter.config().setDocumentTitle(documentTitle);
 	        htmlReporter.config().setReportName(reportName);
-	        htmlReporter.config().setTheme(Theme.DARK);
+	        htmlReporter.config().setTheme(Theme.STANDARD);
+	
 	        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
 
 	    	test = extent.createTest(reportName);

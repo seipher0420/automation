@@ -2,6 +2,8 @@ package main.java.com.metrobank.automation.testcase;
 
 import java.io.IOException;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -46,7 +48,8 @@ public class TestCase01 extends mainConnection{
 		Assert.assertTrue(title.equals("Test"));
 		logGeneration.inputLogs("pass","Step 4: Pass", tempScreenshot);
 	}catch(AssertionError e){
-			tempScreenshot = TestUtil.getScreenshot(driver);
+			TestUtil.getScreenshot(driver);
+			tempScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 			logGeneration.inputLogs("fatal","Step 4: Not Test Page", tempScreenshot);
 		
 	}
@@ -57,7 +60,9 @@ public class TestCase01 extends mainConnection{
 		Assert.assertTrue(title.equals("google"));
 		logGeneration.inputLogs("pass","Step 5: Pass ", tempScreenshot);
 	}catch(AssertionError e){
-		tempScreenshot = TestUtil.getScreenshot(driver);
+		TestUtil.getScreenshot(driver);
+		tempScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+		
 		logGeneration.inputLogs("fail", "Step 5: Not Google " + driver.getTitle(), tempScreenshot);
 		
 		

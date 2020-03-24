@@ -2,6 +2,8 @@ package main.java.com.metrobank.automation.core.utilities.logger;
 
 import java.io.IOException;
 
+import org.testng.annotations.AfterSuite;
+
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
@@ -32,11 +34,11 @@ public class LogGeneration extends ReportGeneration{
 		
 		case "fail":
 		
-			test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromPath(screenshot).build());
+			test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
 			break;
 		
 		case "fatal":
-			test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromPath(screenshot).build());
+			test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
 			break;
 		
 		case "skip":
@@ -48,6 +50,7 @@ public class LogGeneration extends ReportGeneration{
 		}
 	}
 	
+	@AfterSuite
 	public void extentFlush(){
 		extent.flush();
 	}
