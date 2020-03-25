@@ -17,6 +17,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WrapsDriver;
 import org.openqa.selenium.interactions.*;
 
+import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
+
 /**
  * @Description 
  * This class contains implementation
@@ -27,9 +29,11 @@ import org.openqa.selenium.interactions.*;
 public class ElementImpl implements Element{
 
 	private final WebElement element;
+	private LogGeneration logger;
 	
 	public ElementImpl(final WebElement element) {
 		this.element = element;
+		logger = new LogGeneration();
 	}
 
 	/**------------- Base methods --------------*/
@@ -39,7 +43,15 @@ public class ElementImpl implements Element{
 	}
 	@Override
 	public void click() {
-		element.click();	
+		try {
+			element.click();	
+			logger.inputLogs("info", "Step 1: Open Browser", null);
+		}
+		catch (Exception e) {
+			
+		}
+		
+		
 	}
 	@Override
 	public void sendKeys(CharSequence... arg0) {
@@ -106,51 +118,39 @@ public class ElementImpl implements Element{
 		return getWrappedElement();
 	}
 
-
-	
 	/**-------------------- Extension Methods ----------------------*/
-	
-	/** Perform the Double Click 
-	 * action on the element
-	 */
 	@Override
-	public void doubleClick(Driver driver) {
+	public void doubleClick(WebDriver driver) {
 		Actions actionsBuilder = new Actions(driver);
         Action action = actionsBuilder.doubleClick(element).build();
         action.perform();
 	}
-
 	@Override
-	public void rightClick(Driver driver) {
+	public void rightClick(WebDriver driver) {
 		Actions actionsBuilder = new Actions(driver);
         Action action = actionsBuilder.contextClick(element).build();
         action.perform();
 	}
-
 	@Override
-	public void hover(Driver driver) {
+	public void hover(WebDriver driver) {
 		Actions action = new Actions(driver);
         action.moveToElement(element).perform();
 	}
-
 	@Override
-	public void hoverAndClick(Driver driver) {
+	public void hoverAndClick(WebDriver driver) {
 		Actions action = new Actions(driver);
         action.moveToElement(element).click().build().perform();
 	}
-
 	@Override
 	public void clearAndSetValue(String value) {
 		element.clear();
 		sendKeys(value);
 	}
-	
 	@Override
 	public void jClick() {
 		JavascriptExecutor executor = GetJavascriptExecutor();
 		executor.executeScript("arguments[0].click();", element);
 	}
-	
 	@Override
 	public Element scrollIntoView() {
 		JavascriptExecutor executor = GetJavascriptExecutor();
@@ -158,11 +158,131 @@ public class ElementImpl implements Element{
 		return (Element) element;
 	}
 	
-	//*---------------- Element Getter Methods ----------------*/
+	/**---------------- Element Getter Methods ----------------*/
+	@Override
+	public String getClassName() {
+		try {
+			return element.getAttribute("class");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getInnerHtml() {
+		try {
+			return element.getAttribute("innerHTML");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getOuterHtml() {
+		try {
+			return element.getAttribute("outerHTML");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getName() {
+		try {
+			return element.getAttribute("name");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getId() {
+		try {
+			return element.getAttribute("id");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getTitle() {
+		try {
+			return element.getAttribute("title");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getValue() {
+		try {
+			return element.getAttribute("value");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getType() {
+		try {
+			return element.getAttribute("type");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public String getStyle() {
+		try {
+			return element.getAttribute("style");
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
+	@Override
+	public Element getParent() {
+		try {
+			WebElement parent = element.findElement(By.xpath("./parent::*"));
+			return (Element) parent;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public Element getChild() {
+		try {
+			WebElement child = element.findElement(By.xpath("./child::*"));
+			return (Element) child;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public Element getNextSibling() {
+		try {
+			WebElement sibling = element.findElement(By.xpath("./following-sibling::*"));
+			return (Element) sibling;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	@Override
+	public Element getPreviousSibling() {
+		try {
+			WebElement sibling = element.findElement(By.xpath("./previous-sibling::*"));
+			return (Element) sibling;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
 	
 	
-	
-	//*---------------- Common Methods -------------------*/
+	/**---------------- Common Methods -------------------*/
 	@Override
 	public WebDriver GetDriver(){
 //		WrapsDriver wrappedElement = (WrapsDriver)element;
@@ -189,6 +309,5 @@ public class ElementImpl implements Element{
 //        }
 	}
 
-	
 
 }
