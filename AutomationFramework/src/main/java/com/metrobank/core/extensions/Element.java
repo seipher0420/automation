@@ -19,6 +19,7 @@ public interface Element extends WebElement, WrapsElement {
 		void hover(WebDriver driver);
 		void hoverAndClick(WebDriver driver);
 		void clearAndSetValue(String value);
+		void SelectByText(String text);
 		
 		void jClick();		
 		Element scrollIntoView();

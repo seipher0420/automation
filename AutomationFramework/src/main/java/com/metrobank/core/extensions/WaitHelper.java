@@ -1,19 +1,25 @@
 package main.java.com.metrobank.core.extensions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class WaitHelper {
 
-	public static void WaitUntilElementLoads(WebDriver driver, By by) {
+	private static int timeout = 10;
+	
+	public static void WaitUntilElementIsDisplayed(WebDriver driver, By by) {
 		while (true) {
 			try {
 				if (driver.findElement(by).isDisplayed()) {
 					break;
 				}
 			}
-			catch (NullPointerException e) {
+			catch (NoSuchElementException e) {
 				continue;
 			}
 			catch (StaleElementReferenceException e) {
@@ -22,7 +28,7 @@ public abstract class WaitHelper {
 		}
 	}
 	
-	public static void WaitUntilElementLoads(Element element) {
+	public static void WaitUntilElementIsDisplayed(Element element) {
 		while (true) {
 			try {
 				if (element.isDisplayed()) {
@@ -36,6 +42,20 @@ public abstract class WaitHelper {
 				break;
 			}
 		}
+	}
+	
+	public static WebElement FindAndWaitUntilClickable(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		WebElement element = driver.findElement(by);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		return element;
+	}
+	
+	public static WebElement FindAndWaitUntilVisible(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, timeout);
+		WebElement element = driver.findElement(by);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		return element;
 	}
 	
 }
