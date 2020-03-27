@@ -52,7 +52,12 @@ public class ElementImpl extends WaitHelper implements Element{
 			logger.inputLogs(LogType.info, "Action: CLICK on " + element, null);
 		}
 		catch (StaleElementReferenceException e) {
-			logger.inputLogs(LogType.warning, "Attempting to find " + element, null);
+			try {
+				logger.inputLogs(LogType.warning, "Attempting to find " + element, null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -63,7 +68,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public void sendKeys(CharSequence... arg0) {
 		element.sendKeys(arg0);
-		logger.inputLogs(LogType.info, "Action: INPUT \" on " + element, null);
+//		logger.inputLogs(LogType.info, "Action: INPUT \" on " + element, null);
 	}
 	@Override
 	public void submit() {

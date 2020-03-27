@@ -1,25 +1,25 @@
 package main.java.com.metrobank.core.extensions;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class WaitHelper {
+public class WaitImpl implements Wait {
 
-	private int timeout = 10;
+	private final int timeout = 10;
 	
-	public void WaitUntilElementIsDisplayed(WebDriver driver, By by) {
+	@Override
+	public void WaitUntilElementLoads(WebDriver driver, By by) {
 		while (true) {
 			try {
 				if (driver.findElement(by).isDisplayed()) {
 					break;
 				}
 			}
-			catch (NoSuchElementException e) {
+			catch (NullPointerException e) {
 				continue;
 			}
 			catch (StaleElementReferenceException e) {
@@ -27,8 +27,9 @@ public abstract class WaitHelper {
 			}
 		}
 	}
-	
-	public void WaitUntilElementIsDisplayed(Element element) {
+
+	@Override
+	public void WaitUntilElementLoads(Element element) {
 		while (true) {
 			try {
 				if (element.isDisplayed()) {
@@ -43,19 +44,19 @@ public abstract class WaitHelper {
 			}
 		}
 	}
-	
-	public WebElement FindAndWaitUntilClickable(WebDriver driver, By by) {
+
+	@Override
+	public Element WaitUntilClickable(WebDriver driver, Element element) {
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		WebElement element = driver.findElement(by);
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+		wait.until(ExpectedConditions.elementToBeClickable((WebElement)element));
 		return element;
 	}
-	
-	public WebElement FindAndWaitUntilVisible(WebDriver driver, By by) {
+
+	@Override
+	public Element WaitUntilVisibile(WebDriver driver, Element element) {
 		WebDriverWait wait = new WebDriverWait(driver, timeout);
-		WebElement element = driver.findElement(by);
-		wait.until(ExpectedConditions.visibilityOf(element));
+		wait.until(ExpectedConditions.visibilityOf((WebElement)element));
 		return element;
 	}
-	
+
 }

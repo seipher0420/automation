@@ -35,10 +35,11 @@ public abstract class BasePage extends WaitHelper {
         logger = new LogGeneration();
     }
     
-    public Element Button (By by) throws IOException {
+    protected Element Button (By by) throws IOException {
     	try {
     		WebElement element = FindAndWaitUntilClickable(driver, by);
-        	return new ElementImpl(element);
+//    		WebElement element = driver.findElement(by);
+    		return new ElementImpl(element);
     	}
     	catch (NoSuchElementException e) {
     		UnableToFind(by);
@@ -46,7 +47,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Textbox (By by) throws IOException {
+    protected Element Textbox (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -57,7 +58,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Label (By by) throws IOException {
+    protected Element Label (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -68,7 +69,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element MenuItem (By by) throws IOException {
+    protected Element MenuItem (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -79,7 +80,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 
-    public Element TabItem (By by) throws IOException {
+    protected Element TabItem (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -90,7 +91,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Checkbox (By by) throws IOException {
+    protected Element Checkbox (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -101,7 +102,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element RadioButton (By by) throws IOException {
+    protected Element RadioButton (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -112,7 +113,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Dropdown (By by) throws IOException {
+    protected Element Dropdown (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -123,7 +124,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Link (By by) throws IOException {
+    protected Element Link (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -134,7 +135,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 		
-    public Element HyperLink (By by) throws IOException {
+    protected Element HyperLink (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -145,7 +146,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    public Element Window (By by) throws IOException {
+    protected Element Window (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -156,7 +157,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 	
-    public Element Element (By by) throws IOException {
+    protected Element Element (By by) throws IOException {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -171,6 +172,7 @@ public abstract class BasePage extends WaitHelper {
 		description = "Unable to locate element : "+ by ;
 		logger.inputLogs(LogType.warning, description, null);
 	}
+	
 	    
 }
 

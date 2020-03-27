@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 import main.java.com.metrobank.automation.generics.AutomationConstants;
+import main.java.com.metrobank.core.extensions.DriverExtension;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +23,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  */
 
 
-public abstract class mainConnection {
+public abstract class mainConnection extends DriverExtension {
 
 	String chromeDriver;
 	String ieDriver;
@@ -46,6 +48,8 @@ public abstract class mainConnection {
 			webDriver = new ChromeDriver();
 			webDriver.manage().window().maximize();
 			webDriver.navigate().to(properties.getProperty("url"));
+			NavigateToUrl(webDriver, properties.getProperty("url"));
+			MaximizeWindow(webDriver);
 		
 		//For using IE Browser
 		}else if(webBrowser.equals(AutomationConstants.INTERNET_EXPLORER_BROWSER)){
