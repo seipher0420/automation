@@ -23,6 +23,7 @@ public class LogIn {
 	public LogIn (WebDriver driver) {
 		this.driver = driver;
 	}
+	
 	public void LogInSetup () throws IOException {
 		LogInPage loginPage = new LogInPage(driver);
 		
