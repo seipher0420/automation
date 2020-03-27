@@ -35,7 +35,7 @@ public class LogGeneration extends ReportGeneration{
 		
 		case pass:
 			test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
-			tempResultFolder = "pass";
+			tempResultFolder = AutomationConstants.TEST_PASSED;
 			break;
 		
 		case warning:	
@@ -49,7 +49,7 @@ public class LogGeneration extends ReportGeneration{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			tempResultFolder = "fail";
+			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
 		
 		case fatal:
@@ -76,6 +76,7 @@ public class LogGeneration extends ReportGeneration{
 	public void extentFlush(){
 		String path = TestUtil.createResultFolder(tempResultFolder);
 		
+		//Still updating the path for saving pass and fail tests
 		System.out.println(path);
 		extent.flush();
 	}
