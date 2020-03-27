@@ -41,7 +41,7 @@ public abstract class ReportGeneration {
 	        htmlReporter.config().setTheme(Theme.DARK);
 	
 	        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
-
+	  
 	    	test = extent.createTest(reportName);
 	}	
 }

@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="12323" started-at="2020-03-27T03:01:23Z" finished-at="2020-03-27T03:01:36Z">
+  <suite name="Default suite" duration-ms="12218" started-at="2020-03-27T08:14:37Z" finished-at="2020-03-27T08:14:49Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="12323" started-at="2020-03-27T03:01:23Z" finished-at="2020-03-27T03:01:36Z">
+    <test name="Default test" duration-ms="12218" started-at="2020-03-27T08:14:37Z" finished-at="2020-03-27T08:14:49Z">
       <class name="main.java.com.metrobank.automation.testcase.TestCase02">
-        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@120ebad]" name="testCase2" duration-ms="12182" started-at="2020-03-27T11:01:23Z" finished-at="2020-03-27T11:01:36Z">
+        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@120ebad]" name="testCase2" duration-ms="12202" started-at="2020-03-27T16:14:37Z" finished-at="2020-03-27T16:14:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase2 -->

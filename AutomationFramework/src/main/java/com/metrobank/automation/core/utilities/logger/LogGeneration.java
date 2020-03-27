@@ -1,17 +1,20 @@
 package main.java.com.metrobank.automation.core.utilities.logger;
 
+import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
 import org.testng.annotations.AfterSuite;
 
+import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.google.common.io.Files;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.utilities.TestUtil;
@@ -72,10 +75,8 @@ public class LogGeneration extends ReportGeneration{
 	@AfterSuite
 	public void extentFlush(){
 		String path = TestUtil.createResultFolder(tempResultFolder);
-		System.out.println("path");
 		
-		
-		
+		System.out.println(path);
 		extent.flush();
 	}
 

@@ -22,7 +22,7 @@ public class TestCase01 extends mainConnection{
 	WebDriver driver;
 
 	@Test
-	public void testCase() throws InterruptedException{
+	public void testCase() throws InterruptedException, IOException{
 	String title;
 	String tempScreenshot = null;
 	LogGeneration logGeneration = new LogGeneration();	
