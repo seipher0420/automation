@@ -1,25 +1,33 @@
 package main.java.com.metrobank.automation.core.utilities.logger;
 
+import java.awt.List;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import org.testng.annotations.AfterSuite;
 
+import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.google.common.io.Files;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
+import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.core.utilities.report.ReportGeneration;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
 public class LogGeneration extends ReportGeneration{
 	
+	String tempResultFolder;
 	
 	
-	public void inputLogs(LogType type, String description, String screenshot) throws IOException{
-
+	public void inputLogs(LogType type, String description, String screenshot) {
+		
 		switch(type){
 		case info:
 	        test.log(Status.INFO, MarkupHelper.createLabel(description, ExtentColor.BLUE));
@@ -27,6 +35,7 @@ public class LogGeneration extends ReportGeneration{
 		
 		case pass:
 			test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			tempResultFolder = AutomationConstants.TEST_PASSED;
 			break;
 		
 		case warning:	
@@ -34,15 +43,28 @@ public class LogGeneration extends ReportGeneration{
 			break;
 		
 		case fail:
-			test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			try {
+				test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
 		
 		case fatal:
-			test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			try {
+				test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			tempResultFolder = "fail";
 			break;
 		
 		case skip:
 			test.log(Status.SKIP, MarkupHelper.createLabel(description, ExtentColor.INDIGO));
+			break;
 			
 		default:
 			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Log Generations");
@@ -52,6 +74,10 @@ public class LogGeneration extends ReportGeneration{
 	
 	@AfterSuite
 	public void extentFlush(){
+		String path = TestUtil.createResultFolder(tempResultFolder);
+		
+		//Still updating the path for saving pass and fail tests
+		System.out.println(path);
 		extent.flush();
 	}
 

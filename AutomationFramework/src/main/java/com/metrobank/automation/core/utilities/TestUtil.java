@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
@@ -27,11 +30,11 @@ public class TestUtil {
 
 	public static String getScreenshot(WebDriver driver){
 		TakesScreenshot takeScreenshot = (TakesScreenshot) driver;
-		
+		String screenshotBase64;
 		File source = takeScreenshot.getScreenshotAs(OutputType.FILE);
 		
 		String path = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
-		
+		screenshotBase64 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 		File destination = new File(path);
 		
 		try{
@@ -41,7 +44,7 @@ public class TestUtil {
 			
 		}
 		
-		return path;
+		return screenshotBase64;
 	}
 	
 	public static boolean isEmptyOrWhitespace(String value) {
@@ -108,13 +111,65 @@ public class TestUtil {
 			Thread.sleep(1000);
 			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Default set to 1 second");
 		}
-		
-		
 	}
+	
+	public static String createNewFolderBaseDate(){
+		Format format = new SimpleDateFormat("MMddyy");
+		String strDate = format.format(new Date());
+		 String userDirectory = System.getProperty(AutomationConstants.USER_DIRECTORY);
+		 String path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/" ;
+			
+		File file = new File(path);
+			boolean createDir = file.mkdir();
+			   if(createDir){
+			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has been Created " + path);
+			      }else{
+			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has already been created or not found " + path);
+			      }
+		return path;
+	}
+	
+	public static String createResultFolder(String result){
+		Format format = new SimpleDateFormat("MMddyy");
+		String strDate = format.format(new Date());
+		String userDirectory = System.getProperty(AutomationConstants.USER_DIRECTORY);
+		String path;
+		
+		switch(result){
+		 case "pass":
+			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/PASS/";
+			 break;
+		 case "fail":
+			 path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/FAIL/";
+			 break;
+		default:
+			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/" ;
+			break;
+		}
+			 
+		 
+		File file = new File(path);
+			boolean createDir = file.mkdir();
+			   if(createDir){
+			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has been Created " + path);
+			      }else{
+			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has already been created or not found " + path);
+			      }
+		return path;
+	}
+	
 	
 
 	
 	
 	
 	
+	
+		
 }
+		
+	
+	
+	
+	
+

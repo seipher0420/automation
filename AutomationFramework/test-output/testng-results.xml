@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="45511" started-at="2020-03-24T05:19:00Z" finished-at="2020-03-24T05:19:46Z">
+  <suite name="Default suite" duration-ms="12218" started-at="2020-03-27T08:14:37Z" finished-at="2020-03-27T08:14:49Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="45511" started-at="2020-03-24T05:19:00Z" finished-at="2020-03-24T05:19:46Z">
-      <class name="main.java.com.metrobank.automation.testcase.TestCase01">
-        <test-method status="PASS" signature="testCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase01@19f379]" name="testCase" duration-ms="33077" started-at="2020-03-24T13:19:01Z" finished-at="2020-03-24T13:19:34Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCase -->
-      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase01 -->
+    <test name="Default test" duration-ms="12218" started-at="2020-03-27T08:14:37Z" finished-at="2020-03-27T08:14:49Z">
       <class name="main.java.com.metrobank.automation.testcase.TestCase02">
-        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@1933fd1]" name="testCase2" duration-ms="12387" started-at="2020-03-24T13:19:34Z" finished-at="2020-03-24T13:19:46Z">
+        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@120ebad]" name="testCase2" duration-ms="12202" started-at="2020-03-27T16:14:37Z" finished-at="2020-03-27T16:14:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase2 -->
       </class> <!-- main.java.com.metrobank.automation.testcase.TestCase02 -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
