@@ -2,9 +2,12 @@ package main.java.com.metrobank.automation.core.utilities.report;
 
 
 
+import main.java.com.metrobank.automation.core.utilities.GetData;
 import main.java.com.metrobank.automation.core.utilities.TestUtil;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -14,34 +17,57 @@ public abstract class ReportGeneration {
 
 
 	public static ExtentHtmlReporter htmlReporter;
-	
+	public static ExtentHtmlReporter htmlReporterSummary;
+	public static String fileNameData;
+	public static String fileDirectory;
 
-	 public static ExtentReports extent;
-	 public static ExtentTest test;
-	 
-	 
-	 public static synchronized ExtentReports GetExtent() {
-		    if (extent != null) {
-		    	return extent;
-		    }else{
-		    	  return extent = new ExtentReports();
-		    }
-	 }
-	 
+	public static ExtentReports extent;
+	public static ExtentReports extentSummary;
+	public static ExtentTest test;
+	public static ExtentTest testSummary;
+	
 	@BeforeSuite
-	 public void generateReport(String documentTitle, String reportName){
-		 	String path = TestUtil.createNewFolderBaseDate();
-	     	
-			htmlReporter = new ExtentHtmlReporter(path + reportName + ".html");
-	        GetExtent();
-	        extent.attachReporter(htmlReporter);
+	public static synchronized ExtentReports GetExtent() {
+		if (extentSummary != null) {
+			return extentSummary;
+		} else {
+			return extentSummary = new ExtentReports();
+		}
+	}
 
-	        htmlReporter.config().setDocumentTitle(documentTitle);
-	        htmlReporter.config().setReportName(reportName);
-	        htmlReporter.config().setTheme(Theme.DARK);
-	
-	        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
-	  
-	    	test = extent.createTest(reportName);
+	@BeforeClass
+	public void generateReport(String reportName) {
+
+		GetData data = new GetData();
+		data.setFileName(reportName + ".html");
+		data.setFileDirectory(TestUtil.createNewFolderBaseDate());
+		htmlReporter = new ExtentHtmlReporter(data.getFileDirectory()
+				+ data.getFileName());
+		fileNameData = data.getFileName();
+		fileDirectory = data.getFileDirectory();
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
+		htmlReporter.config().setReportName(reportName);
+		htmlReporter.config().setTheme(Theme.STANDARD);
+
+		htmlReporter.config().setTimeStampFormat(
+				"EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+
+		test = extent.createTest(reportName);
+		generateTestSummary(reportName);
 	}	
+	
+	@BeforeSuite
+	public void generateTestSummary(String reportName){
+		String text = TestUtil.createNewFolderBaseDate();
+		htmlReporterSummary = new ExtentHtmlReporter(text + "ReportSummary.html");
+		GetExtent();
+		extentSummary.attachReporter(htmlReporterSummary);
+		htmlReporterSummary.config().setReportName(reportName);
+		htmlReporterSummary.config().setTheme(Theme.STANDARD);
+		htmlReporterSummary.config().setTimeStampFormat(
+				"EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+		testSummary = extentSummary.createTest(reportName);
+		
+	}
 }

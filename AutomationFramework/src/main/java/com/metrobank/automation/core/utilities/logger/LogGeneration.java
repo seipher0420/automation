@@ -1,19 +1,15 @@
 package main.java.com.metrobank.automation.core.utilities.logger;
 
-import java.awt.List;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
+
 
 import org.testng.annotations.AfterSuite;
 
-import com.aventstack.extentreports.ExtentReporter;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.google.common.io.Files;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
@@ -26,59 +22,91 @@ public class LogGeneration extends ReportGeneration{
 	String tempResultFolder;
 	
 	
+	
 	public void inputLogs(LogType type, String description, String screenshot) {
 		
-		switch(type){
+		switch (type) {
 		case info:
-	        test.log(Status.INFO, MarkupHelper.createLabel(description, ExtentColor.BLUE));
-	        break;
-		
+			test.log(Status.INFO,
+					MarkupHelper.createLabel(description, ExtentColor.BLUE));
+			testSummary.log(Status.INFO,
+					MarkupHelper.createLabel(description, ExtentColor.BLUE));
+			break;
+
 		case pass:
-			test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			test.log(Status.PASS,
+					MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			testSummary.log(Status.PASS,
+					MarkupHelper.createLabel(description, ExtentColor.GREEN));
 			tempResultFolder = AutomationConstants.TEST_PASSED;
 			break;
-		
-		case warning:	
-			test.log(Status.WARNING, MarkupHelper.createLabel(description, ExtentColor.ORANGE));
+
+		case warning:
+			test.log(Status.WARNING,
+					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
+			testSummary.log(Status.WARNING,
+					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
 			break;
-		
+
 		case fail:
 			try {
-				test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+				test.log(Status.FAIL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+				testSummary.log(Status.FAIL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
-		
+
 		case fatal:
 			try {
-				test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+				test.log(Status.FATAL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+				testSummary.log(Status.FATAL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			tempResultFolder = "fail";
+			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
-		
+
 		case skip:
-			test.log(Status.SKIP, MarkupHelper.createLabel(description, ExtentColor.INDIGO));
+			test.log(Status.SKIP,
+					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
+			testSummary.log(Status.SKIP,
+					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
 			break;
-			
+
 		default:
-			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Log Generations");
-			
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS
+					+ "Log Generations");
+
 		}
 	}
 	
 	@AfterSuite
-	public void extentFlush(){
+	public void extentFlush() throws IOException{
 		String path = TestUtil.createResultFolder(tempResultFolder);
-		
-		//Still updating the path for saving pass and fail tests
-		System.out.println(path);
+
 		extent.flush();
+		extentSummary.flush();
+		
+		File testPath = new File(fileDirectory + fileNameData);
+		File newPath = new File(path + fileNameData);
+
+		if (tempResultFolder.equals(AutomationConstants.TEST_PASSED)) {
+			Files.move(testPath, newPath);
+		} else {
+			Files.move(testPath, newPath);
+		}
 	}
 
 }

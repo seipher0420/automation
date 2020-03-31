@@ -27,7 +27,7 @@ public class TestCase01 extends mainConnection{
 	String tempScreenshot = null;
 	LogGeneration logGeneration = new LogGeneration();	
 	driver = connection("chrome");
-	logGeneration.generateReport("Test Websites", "Test Report");
+	logGeneration.generateReport("Test Case01");
 	
 	title = driver.getTitle();
 
