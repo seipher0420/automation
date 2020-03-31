@@ -53,10 +53,6 @@ public class ElementImpl extends WaitHelper implements Element{
 		}
 		catch (StaleElementReferenceException e) {
 			logger.inputLogs(LogType.warning, "Attempting to find " + element, null);
-		} 
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 	}
