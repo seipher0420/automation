@@ -1,6 +1,8 @@
 package main.java.com.metrobank.automation.pages;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -11,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
-import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 import main.java.com.metrobank.core.extensions.Element;
 import main.java.com.metrobank.core.extensions.ElementImpl;
@@ -173,6 +174,5 @@ public abstract class BasePage extends WaitHelper {
 		logger.inputLogs(LogType.warning, description, null);
 	}
 	
-	    
 }
 

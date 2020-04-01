@@ -5,6 +5,7 @@ import java.io.IOException;
 import main.java.com.metrobank.automation.core.base.mainConnection;
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
+import main.java.com.metrobank.automation.pages.Locators;
 import main.java.com.metrobank.automation.pages.Modules.*;
 
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class TestCase03 extends mainConnection{
 
 		driver = connection("chrome");
 		
-		LogIn login = new LogIn(driver);
+		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
 		
 		driver.quit();

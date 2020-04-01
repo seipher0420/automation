@@ -35,9 +35,11 @@ public class ElementImpl extends WaitHelper implements Element{
 	private final WebElement element;
 	private LogGeneration logger;
 	
+	// logger should also be passed as an argument here
+	// consider accessing driver for wait helpers
 	public ElementImpl(final WebElement element) {
 		this.element = element;
-		logger = new LogGeneration();
+//		logger = new LogGeneration();
 	}
 
 	/**------------- Base methods --------------*/
@@ -47,23 +49,22 @@ public class ElementImpl extends WaitHelper implements Element{
 	}
 	@Override
 	public void click() {
-		try {
+//		try {
 			element.click();	
-			logger.inputLogs(LogType.info, "Action: CLICK on " + element, null);
-		}
-		catch (StaleElementReferenceException e) {
-			try {
-				logger.inputLogs(LogType.warning, "Attempting to find " + element, null);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		} 
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//			logger.inputLogs(LogType.info, "Action: CLICK on " + element, null);
+//		}
+//		catch (StaleElementReferenceException e) {
+//			try {
+////				logger.inputLogs(LogType.warning, "Attempting to find " + element, null);
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		} 
+//		catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	@Override
 	public void sendKeys(CharSequence... arg0) {
