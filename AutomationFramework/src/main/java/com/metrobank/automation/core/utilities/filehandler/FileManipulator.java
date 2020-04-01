@@ -10,7 +10,21 @@ import main.java.com.metrobank.automation.generics.AutomationConstants;
 
 public class FileManipulator {
 
-	public void deleteFile(String filePath) {
+	public boolean checkDownloadFile(String filePath){
+		boolean isExisting = false;
+		
+		
+		File file = new File(filePath);
+		
+		if(file.exists()){
+			isExisting = true;
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS + filePath + "is Existing");
+		}
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "file doesn't Exist");
+			return isExisting;
+	}
+	
+		public void deleteFile(String filePath) {
 
 		File file = new File(filePath);
 
@@ -27,17 +41,24 @@ public class FileManipulator {
 	public String readPdfFile(String filePath) throws IOException{
 		File file = new File(filePath);
 		String text = null;
+		PDDocument pdfFile = null;
+		PDFTextStripper pdfStripper = new PDFTextStripper();
 		
-		PDDocument pdfFile = PDDocument.load(file);
-		
-		if(!pdfFile.isEncrypted()){
-			PDFTextStripper pdfStripper = new PDFTextStripper();
-			text = pdfStripper.getText(pdfFile);
+		if(file.exists()){
+			 pdfFile = PDDocument.load(file);
+			 if(!pdfFile.isEncrypted()){
+					text = pdfStripper.getText(pdfFile);
+					System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Successfully Read PDF File.");
+				}
+		}else{
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Failed to read PDF File not Found.");
 		}
+		
 		pdfFile.close();
 		return text;	
 	}
 	
+
 	
 	
 	
