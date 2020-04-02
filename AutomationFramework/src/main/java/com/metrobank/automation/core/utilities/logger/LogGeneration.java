@@ -18,7 +18,7 @@ public class LogGeneration extends ReportGeneration{
 	
 	
 	
-	public void inputLogs(LogType type, String description, String screenshot) throws IOException{
+	public void inputLogs(LogType type, String description, String screenshot) {
 
 		switch(type){
 		case info:
@@ -34,11 +34,21 @@ public class LogGeneration extends ReportGeneration{
 			break;
 		
 		case fail:
-			test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			try {
+				test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		
 		case fatal:
-			test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			try {
+				test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		
 		case skip:

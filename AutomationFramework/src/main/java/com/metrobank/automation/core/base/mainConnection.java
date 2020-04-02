@@ -5,8 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
-import main.java.com.metrobank.core.extensions.DriverExtension;
+import main.java.com.metrobank.core.extensions.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  */
 
 
-public abstract class mainConnection extends DriverExtension {
+public abstract class mainConnection {
 
 	String chromeDriver;
 	String ieDriver;
@@ -48,8 +49,8 @@ public abstract class mainConnection extends DriverExtension {
 			webDriver = new ChromeDriver();
 			webDriver.manage().window().maximize();
 			webDriver.navigate().to(properties.getProperty("url"));
-			NavigateToUrl(webDriver, properties.getProperty("url"));
-			MaximizeWindow(webDriver);
+//			DriverExtension.NavigateToUrl(webDriver, properties.getProperty("url"));
+//			DriverExtension.MaximizeWindow(webDriver);
 		
 		//For using IE Browser
 		}else if(webBrowser.equals(AutomationConstants.INTERNET_EXPLORER_BROWSER)){

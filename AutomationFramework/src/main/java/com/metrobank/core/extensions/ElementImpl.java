@@ -35,11 +35,10 @@ public class ElementImpl extends WaitHelper implements Element{
 	private final WebElement element;
 	private LogGeneration logger;
 	
-	// logger should also be passed as an argument here
 	// consider accessing driver for wait helpers
 	public ElementImpl(final WebElement element) {
 		this.element = element;
-//		logger = new LogGeneration();
+		logger = new LogGeneration();
 	}
 
 	/**------------- Base methods --------------*/
@@ -50,7 +49,8 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public void click() {
 //		try {
-			element.click();	
+		WaitUntilClickable(GetDriver(), element);	
+		element.click();	
 //			logger.inputLogs(LogType.info, "Action: CLICK on " + element, null);
 //		}
 //		catch (StaleElementReferenceException e) {
@@ -68,8 +68,8 @@ public class ElementImpl extends WaitHelper implements Element{
 	}
 	@Override
 	public void sendKeys(CharSequence... arg0) {
+		WaitUntilClickable(GetDriver(), element);
 		element.sendKeys(arg0);
-//		logger.inputLogs(LogType.info, "Action: INPUT \" on " + element, null);
 	}
 	@Override
 	public void submit() {
@@ -262,8 +262,8 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getParent() {
 		try {
-			WebElement parent = element.findElement(By.xpath("./parent::*"));
-			return (Element) parent;
+			Element parent = findElement(By.xpath("./parent::*"));
+			return parent;
 		}
 		catch (Exception e) {
 			return null;
@@ -272,8 +272,8 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getChild() {
 		try {
-			WebElement child = element.findElement(By.xpath("./child::*"));
-			return (Element) child;
+			Element child = findElement(By.xpath("./child::*"));
+			return child;
 		}
 		catch (Exception e) {
 			return null;
@@ -282,8 +282,8 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getNextSibling() {
 		try {
-			WebElement sibling = element.findElement(By.xpath("./following-sibling::*"));
-			return (Element) sibling;
+			Element sibling = findElement(By.xpath("./following-sibling::*"));
+			return sibling;
 		}
 		catch (Exception e) {
 			return null;
@@ -292,14 +292,13 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getPreviousSibling() {
 		try {
-			WebElement sibling = element.findElement(By.xpath("./previous-sibling::*"));
-			return (Element) sibling;
+			Element sibling = findElement(By.xpath("./previous-sibling::*"));
+			return sibling;
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
-	
 	
 	/**---------------- Common Methods -------------------*/
 	@Override
