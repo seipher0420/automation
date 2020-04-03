@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import main.java.com.metrobank.automation.core.base.Enums.AlertType;
 import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
@@ -29,21 +30,8 @@ public class DriverImpl implements Driver {
 
 	private final WebDriver driver;
 	
-	public DriverImpl (BrowserType browserType) {
-		switch(browserType) {
-		case chrome:
-			driver = new ChromeDriver();
-			break;
-		case ie:
-			driver = new InternetExplorerDriver();
-			break;
-		case firefox:
-			driver = new FirefoxDriver();
-			break;
-		default:
-			driver = new ChromeDriver();
-			break;
-		}
+	public DriverImpl (WebDriver driver) {
+		this.driver = driver;
 	}
 	
 	/************** Base Methods *************/

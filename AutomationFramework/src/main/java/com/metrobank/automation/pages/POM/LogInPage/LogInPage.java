@@ -32,17 +32,17 @@ public class LogInPage extends BasePage {
 		LOGINBTN_CSS = property.GetValue("loginBtnCss");
 	}
 	
-	public LogInPage ClickLoginButton() throws IOException{
+	public LogInPage ClickLoginButton() {
 		Button(By.cssSelector(LOGINBTN_CSS)).click();
 		return this;
 	}
 	
-	public LogInPage EnterUsername(String value) throws IOException {
+	public LogInPage EnterUsername(String value) {
 		Textbox(By.id(USERNAME_ID)).sendKeys(value);
 		return this;
 	}
 	
-	public LogInPage EnterPassword(String value) throws IOException {
+	public LogInPage EnterPassword(String value) {
 		Textbox(By.id(PASSWORD_ID)).sendKeys(value);
 		return this;
 	}

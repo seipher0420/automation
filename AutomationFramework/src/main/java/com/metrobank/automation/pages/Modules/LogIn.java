@@ -40,7 +40,7 @@ public class LogIn {
 		password = property.GetValue("password");
 	}
 	
-	public void LogInSetup () throws IOException {
+	public void LogInSetup() {
 		
 		LogInPage loginPage = new LogInPage(driver);
 		

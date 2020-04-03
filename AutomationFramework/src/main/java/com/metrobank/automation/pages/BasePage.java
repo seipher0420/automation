@@ -24,7 +24,7 @@ import main.java.com.metrobank.core.extensions.WaitHelper;
  * within the Automation Project
  *
  */
-public abstract class BasePage extends WaitHelper {
+public abstract class BasePage {
 	
 	protected WebDriver driver;
 	private LogGeneration logger;
@@ -36,10 +36,9 @@ public abstract class BasePage extends WaitHelper {
         logger = new LogGeneration();
     }
     
-    protected Element Button (By by) throws IOException {
+    protected Element Button (By by) {
     	try {
-    		WebElement element = FindAndWaitUntilClickable(driver, by);
-//    		WebElement element = driver.findElement(by);
+    		WebElement element = driver.findElement(by);
     		return new ElementImpl(element);
     	}
     	catch (NoSuchElementException e) {
@@ -48,7 +47,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Textbox (By by) throws IOException {
+    protected Element Textbox (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -59,7 +58,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Label (By by) throws IOException {
+    protected Element Label (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -70,7 +69,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element MenuItem (By by) throws IOException {
+    protected Element MenuItem (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -81,7 +80,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 
-    protected Element TabItem (By by) throws IOException {
+    protected Element TabItem (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -92,7 +91,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Checkbox (By by) throws IOException {
+    protected Element Checkbox (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -103,7 +102,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element RadioButton (By by) throws IOException {
+    protected Element RadioButton (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -114,7 +113,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Dropdown (By by) throws IOException {
+    protected Element Dropdown (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -125,7 +124,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Link (By by) throws IOException {
+    protected Element Link (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -136,7 +135,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 		
-    protected Element HyperLink (By by) throws IOException {
+    protected Element HyperLink (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -147,7 +146,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
     
-    protected Element Window (By by) throws IOException {
+    protected Element Window (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -158,7 +157,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 	
-    protected Element Element (By by) throws IOException {
+    protected Element Element (By by) {
     	try {
     		WebElement element = driver.findElement(by);
         	return new ElementImpl(element);
@@ -169,7 +168,7 @@ public abstract class BasePage extends WaitHelper {
     	}
     }
 	
-	private void UnableToFind(By by) throws IOException {
+	private void UnableToFind(By by) {
 		description = "Unable to locate element : "+ by ;
 		logger.inputLogs(LogType.warning, description, null);
 	}

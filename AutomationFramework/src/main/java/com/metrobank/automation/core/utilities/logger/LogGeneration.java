@@ -23,14 +23,17 @@ public class LogGeneration extends ReportGeneration{
 		switch(type){
 		case info:
 	        test.log(Status.INFO, MarkupHelper.createLabel(description, ExtentColor.BLUE));
+	        System.out.println(description);
 	        break;
 		
 		case pass:
 			test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			System.out.println(description);
 			break;
 		
 		case warning:	
 			test.log(Status.WARNING, MarkupHelper.createLabel(description, ExtentColor.ORANGE));
+			System.out.println(description);
 			break;
 		
 		case fail:

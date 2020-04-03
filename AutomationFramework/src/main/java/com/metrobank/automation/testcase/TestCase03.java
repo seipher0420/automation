@@ -1,25 +1,15 @@
 package main.java.com.metrobank.automation.testcase;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
-import main.java.com.metrobank.automation.core.base.mainConnection;
+import main.java.com.metrobank.automation.core.base.*;
 import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
-import main.java.com.metrobank.automation.core.utilities.PropertyFileHandler;
 import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
-import main.java.com.metrobank.automation.generics.AutomationConstants;
-import main.java.com.metrobank.automation.pages.Locators;
 import main.java.com.metrobank.automation.pages.Modules.*;
 import main.java.com.metrobank.core.extensions.Driver;
-import main.java.com.metrobank.core.extensions.DriverImpl;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-public class TestCase03 extends mainConnection{
+public class TestCase03 extends BrowserConnection{
 
 //	WebDriver driver;
 	String chromeDriver;
@@ -28,23 +18,19 @@ public class TestCase03 extends mainConnection{
 	String userDirectory;
 	
 	@Test
-	public void testCase3() throws IOException{
+	public void testCase3() {
 
-		PropertyFileHandler property = new PropertyFileHandler(AutomationConstants.PROPERTY_FILE);
-		
-		//Initialize string parameters
-		chromeDriver = property.GetValue(AutomationConstants.CHROME_BROWSER);
-		userDirectory = System.getProperty(AutomationConstants.USER_DIRECTORY);
-		url = property.GetValue("url");
-		
-		System.setProperty("webdriver.chrome.driver",userDirectory + chromeDriver);
-		driver = new DriverImpl(BrowserType.chrome);
-		driver.MaximizeWindow();
-		driver.NavigateToUrl(url);
+		// Step 1 : Setup browser connection
+		driver = SetBrowser(BrowserType.chrome);
+
+		LogGeneration logGeneration = new LogGeneration();
+		logGeneration.generateReport("Test Websites", "Test Report2");
+		logGeneration.inputLogs(LogType.pass, "Step 1: Open Browser", null);
 		
 		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
 		
+		logGeneration.extentFlush();
 		driver.quit();
 	}
 	
