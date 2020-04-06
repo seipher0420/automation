@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="38623" started-at="2020-03-31T03:02:14Z" finished-at="2020-03-31T03:02:53Z">
+  <suite name="Default suite" duration-ms="17774" started-at="2020-04-06T10:20:04Z" finished-at="2020-04-06T10:20:21Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="38623" started-at="2020-03-31T03:02:14Z" finished-at="2020-03-31T03:02:53Z">
-      <class name="main.java.com.metrobank.automation.testcase.TestCase01">
-        <test-method status="PASS" signature="testCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase01@12cc05a]" name="testCase" duration-ms="25913" started-at="2020-03-31T11:02:14Z" finished-at="2020-03-31T11:02:40Z">
+    <test name="Default test" duration-ms="17774" started-at="2020-04-06T10:20:04Z" finished-at="2020-04-06T10:20:21Z">
+      <class name="main.java.com.metrobank.automation.testcase.TestCase03">
+        <test-method status="PASS" signature="testCase3()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase03@120ebad]" name="testCase3" duration-ms="17750" started-at="2020-04-06T18:20:04Z" finished-at="2020-04-06T18:20:21Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCase -->
-      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase01 -->
-      <class name="main.java.com.metrobank.automation.testcase.TestCase02">
-        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@153acfe]" name="testCase2" duration-ms="12690" started-at="2020-03-31T11:02:40Z" finished-at="2020-03-31T11:02:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCase2 -->
-      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase02 -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- testCase3 -->
+      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase03 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -19,7 +19,7 @@ import main.java.com.metrobank.automation.generics.AutomationConstants;
 
 public class LogGeneration extends ReportGeneration{
 	
-	String tempResultFolder;
+	String tempResultFolder = "tempFolder";
   
 	public void inputLogs(LogType type, String description, String screenshot) {
 		
@@ -99,8 +99,12 @@ public class LogGeneration extends ReportGeneration{
 	
 	@AfterSuite
 	public void extentFlush() throws IOException{
-		String path = TestUtil.createResultFolder(tempResultFolder);
-
+		String path = null;
+		if(tempResultFolder != null || tempResultFolder == AutomationConstants.TEST_PASSED || tempResultFolder == AutomationConstants.TEST_FAILED){
+			path = TestUtil.createResultFolder(tempResultFolder);
+		}else{
+			path = TestUtil.createNewFolderBaseDate();
+		}
 		extent.flush();
 		extentSummary.flush();
 		
@@ -110,7 +114,14 @@ public class LogGeneration extends ReportGeneration{
 		if (tempResultFolder.equals(AutomationConstants.TEST_PASSED)) {
 			Files.move(testPath, newPath);
 		} else {
-			Files.move(testPath, newPath);
+			try{
+				Files.move(testPath, newPath);
+			}catch(Exception e){
+				path = TestUtil.createResultFolder("tempFolder");
+				newPath = new File(path + fileNameData);	
+				Files.move(testPath, newPath);
+			}
+		
 		}
 	}
 
