@@ -73,7 +73,7 @@ public abstract class mainConnection {
 	
 
 		}else{
-			System.out.println("Driver not Compatible");
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Driver not Compatible");
 		}
 		
 		return webDriver;

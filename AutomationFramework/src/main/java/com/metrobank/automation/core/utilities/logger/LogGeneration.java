@@ -1,71 +1,113 @@
 package main.java.com.metrobank.automation.core.utilities.logger;
 
+import java.io.File;
 import java.io.IOException;
+
 
 import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.google.common.io.Files;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
+import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.core.utilities.report.ReportGeneration;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
 public class LogGeneration extends ReportGeneration{
 	
-	
-	
-	public void inputLogs(LogType type, String description, String screenshot) {
-
-		switch(type){
+	String tempResultFolder;
+  
+		switch (type) {
 		case info:
-	        test.log(Status.INFO, MarkupHelper.createLabel(description, ExtentColor.BLUE));
-	        System.out.println(description);
-	        break;
-		
+			test.log(Status.INFO,
+					MarkupHelper.createLabel(description, ExtentColor.BLUE));
+			testSummary.log(Status.INFO,
+					MarkupHelper.createLabel(description, ExtentColor.BLUE));
+      System.out.println(description);
+			break;
+
 		case pass:
-			test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			test.log(Status.PASS,
+					MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			testSummary.log(Status.PASS,
+					MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			tempResultFolder = AutomationConstants.TEST_PASSED;
 			System.out.println(description);
+      break;
+
+		case warning:
+			test.log(Status.WARNING,
+					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
+			testSummary.log(Status.WARNING,
+					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
 			break;
-		
-		case warning:	
-			test.log(Status.WARNING, MarkupHelper.createLabel(description, ExtentColor.ORANGE));
-			System.out.println(description);
-			break;
-		
+
 		case fail:
 			try {
-				test.log(Status.FAIL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+				test.log(Status.FAIL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+				testSummary.log(Status.FAIL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+        System.out.println(description);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
-		
+
 		case fatal:
 			try {
-				test.log(Status.FATAL,description, MediaEntityBuilder.createScreenCaptureFromBase64String(screenshot).build());
+				test.log(Status.FATAL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+				testSummary.log(Status.FATAL, description, MediaEntityBuilder
+						.createScreenCaptureFromBase64String(screenshot)
+						.build());
+        System.out.println(description);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			tempResultFolder = AutomationConstants.TEST_FAILED;
 			break;
-		
+
 		case skip:
-			test.log(Status.SKIP, MarkupHelper.createLabel(description, ExtentColor.INDIGO));
-			
+			test.log(Status.SKIP,
+					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
+			testSummary.log(Status.SKIP,
+					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
+      System.out.println(description);
+			break;
+
 		default:
-			System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Log Generations");
-			
+			System.out.println(AutomationConstants.FRAMEWORK_LOGS
+					+ "Log Generations");
+
 		}
 	}
 	
 	@AfterSuite
-	public void extentFlush(){
+	public void extentFlush() throws IOException{
+		String path = TestUtil.createResultFolder(tempResultFolder);
+
 		extent.flush();
+		extentSummary.flush();
+		
+		File testPath = new File(fileDirectory + fileNameData);
+		File newPath = new File(path + fileNameData);
+
+		if (tempResultFolder.equals(AutomationConstants.TEST_PASSED)) {
+			Files.move(testPath, newPath);
+		} else {
+			Files.move(testPath, newPath);
+		}
 	}
 
 }

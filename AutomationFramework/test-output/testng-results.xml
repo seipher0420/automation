@@ -2,18 +2,18 @@
 <testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="45511" started-at="2020-03-24T05:19:00Z" finished-at="2020-03-24T05:19:46Z">
+  <suite name="Suite" duration-ms="38623" started-at="2020-03-31T03:02:14Z" finished-at="2020-03-31T03:02:53Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="45511" started-at="2020-03-24T05:19:00Z" finished-at="2020-03-24T05:19:46Z">
+    <test name="Test" duration-ms="38623" started-at="2020-03-31T03:02:14Z" finished-at="2020-03-31T03:02:53Z">
       <class name="main.java.com.metrobank.automation.testcase.TestCase01">
-        <test-method status="PASS" signature="testCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase01@19f379]" name="testCase" duration-ms="33077" started-at="2020-03-24T13:19:01Z" finished-at="2020-03-24T13:19:34Z">
+        <test-method status="PASS" signature="testCase()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase01@12cc05a]" name="testCase" duration-ms="25913" started-at="2020-03-31T11:02:14Z" finished-at="2020-03-31T11:02:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase -->
       </class> <!-- main.java.com.metrobank.automation.testcase.TestCase01 -->
       <class name="main.java.com.metrobank.automation.testcase.TestCase02">
-        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@1933fd1]" name="testCase2" duration-ms="12387" started-at="2020-03-24T13:19:34Z" finished-at="2020-03-24T13:19:46Z">
+        <test-method status="PASS" signature="testCase2()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase02@153acfe]" name="testCase2" duration-ms="12690" started-at="2020-03-31T11:02:40Z" finished-at="2020-03-31T11:02:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCase2 -->

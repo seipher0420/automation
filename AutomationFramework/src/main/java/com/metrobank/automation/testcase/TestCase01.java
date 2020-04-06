@@ -12,6 +12,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.aventstack.extentreports.model.Media;
 
+import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.base.mainConnection;
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.utilities.TestUtil;
@@ -22,12 +23,12 @@ public class TestCase01 extends mainConnection{
 	WebDriver driver;
 
 	@Test
-	public void testCase() throws IOException, InterruptedException{
+	public void testCase() throws InterruptedException, IOException{
 	String title;
 	String tempScreenshot = null;
 	LogGeneration logGeneration = new LogGeneration();	
 	driver = connection("chrome");
-	logGeneration.generateReport("Test Websites", "Test Report");
+	logGeneration.generateReport("Test Case01");
 	
 	title = driver.getTitle();
 
@@ -41,7 +42,7 @@ public class TestCase01 extends mainConnection{
 		Assert.assertTrue(driver.getWindowHandle()!=null);
 		logGeneration.inputLogs(LogType.pass, "Step 3: Windows Handle: " + driver.getWindowHandle(), tempScreenshot);
 	}catch(AssertionError e){
-		logGeneration.inputLogs(LogType.info, "No window handle", tempScreenshot);		//logGeneration.inputLogs("input", "No window handle", tempScreenshot);
+		logGeneration.inputLogs(LogType.fail, "No window handle", tempScreenshot);
 	}
 	
 	
@@ -49,10 +50,8 @@ public class TestCase01 extends mainConnection{
 		Assert.assertTrue(title.equals("Test"));
 		logGeneration.inputLogs(LogType.pass,"Step 4: Pass", tempScreenshot);
 	}catch(AssertionError e){
-			TestUtil.getScreenshot(driver);
-			tempScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-			logGeneration.inputLogs(LogType.fatal,"Step 4: Not Test Page", tempScreenshot);
-		
+			tempScreenshot = TestUtil.getScreenshot(driver);
+			logGeneration.inputLogs(LogType.fatal,"Step 4: Not Test Page", tempScreenshot);		
 	}
 	driver.navigate().to("http://yahoo.com");
 	TestUtil.waitTime(2);
@@ -61,12 +60,8 @@ public class TestCase01 extends mainConnection{
 		Assert.assertTrue(title.equals("google"));
 		logGeneration.inputLogs(LogType.pass,"Step 5: Pass ", tempScreenshot);
 	}catch(AssertionError e){
-		TestUtil.getScreenshot(driver);
-		tempScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-		
+		tempScreenshot = TestUtil.getScreenshot(driver);
 		logGeneration.inputLogs(LogType.fail, "Step 5: Not Google " + driver.getTitle(), tempScreenshot);
-		
-		
 	}
 	logGeneration.inputLogs(LogType.skip, "Step 6: Skip Test" , tempScreenshot);
 	

@@ -1,16 +1,12 @@
 package main.java.com.metrobank.automation.core.utilities.report;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import main.java.com.metrobank.automation.generics.AutomationConstants;
+
+import main.java.com.metrobank.automation.core.utilities.GetData;
+import main.java.com.metrobank.automation.core.utilities.TestUtil;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -20,51 +16,58 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 public abstract class ReportGeneration {
 
 
-	ExtentHtmlReporter htmlReporter;
+	public static ExtentHtmlReporter htmlReporter;
+	public static ExtentHtmlReporter htmlReporterSummary;
+	public static String fileNameData;
+	public static String fileDirectory;
+
+	public static ExtentReports extent;
+	public static ExtentReports extentSummary;
+	public static ExtentTest test;
+	public static ExtentTest testSummary;
 	
-	 String userDirectory = System.getProperty(AutomationConstants.USER_DIRECTORY);
-	 public static ExtentReports extent;
-	 public static ExtentTest test;
-	 
-	 
-	 public static synchronized ExtentReports GetExtent() {
-		    if (extent != null) {
-		    	return extent;
-		    }else{
-		    	  return extent = new ExtentReports();
-		    }
-	 }
-	 
+	@BeforeSuite
+	public static synchronized ExtentReports GetExtent() {
+		if (extentSummary != null) {
+			return extentSummary;
+		} else {
+			return extentSummary = new ExtentReports();
+		}
+	}
 
 	@BeforeClass
-	 public void generateReport(String documentTitle, String reportName){
-		 
-	    	String path;
-	    	File file;
-	    	Format format = new SimpleDateFormat("MMddyy");
-			String strDate = format.format(new Date());
-			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/" + strDate + "/" ;
-			
-			file = new File(path);
-			boolean createDir = file.mkdir();
-			   if(createDir){
-			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has been Created " + path);
-			      }else{
-			         System.out.println(AutomationConstants.FRAMEWORK_LOGS + "Folder has already been created or not found " + path);
-			      }
-			 
-	        htmlReporter = new ExtentHtmlReporter(path + reportName + ".html");
-	        GetExtent();
-	        extent.attachReporter(htmlReporter);
+	public void generateReport(String reportName) {
 
-	        htmlReporter.config().setDocumentTitle(documentTitle);
-	        htmlReporter.config().setReportName(reportName);
-	        htmlReporter.config().setTheme(Theme.STANDARD);
+		GetData data = new GetData();
+		data.setFileName(reportName + ".html");
+		data.setFileDirectory(TestUtil.createNewFolderBaseDate());
+		htmlReporter = new ExtentHtmlReporter(data.getFileDirectory()
+				+ data.getFileName());
+		fileNameData = data.getFileName();
+		fileDirectory = data.getFileDirectory();
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
+		htmlReporter.config().setReportName(reportName);
+		htmlReporter.config().setTheme(Theme.STANDARD);
+
+		htmlReporter.config().setTimeStampFormat(
+				"EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+
+		test = extent.createTest(reportName);
+		generateTestSummary(reportName);
+	}	
 	
-	        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
-
-	    	test = extent.createTest(reportName);
-		 
-		 
-	 }	
+	@BeforeSuite
+	public void generateTestSummary(String reportName){
+		String text = TestUtil.createNewFolderBaseDate();
+		htmlReporterSummary = new ExtentHtmlReporter(text + "ReportSummary.html");
+		GetExtent();
+		extentSummary.attachReporter(htmlReporterSummary);
+		htmlReporterSummary.config().setReportName(reportName);
+		htmlReporterSummary.config().setTheme(Theme.STANDARD);
+		htmlReporterSummary.config().setTimeStampFormat(
+				"EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
+		testSummary = extentSummary.createTest(reportName);
+		
+	}
 }
