@@ -1,5 +1,7 @@
 package main.java.com.metrobank.automation.testcase;
 
+import java.io.IOException;
+
 import main.java.com.metrobank.automation.core.base.*;
 import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
@@ -22,16 +24,22 @@ public class TestCase03 extends BrowserConnection{
 
 		// Set up logger
 		LogGeneration logGeneration = new LogGeneration();
-		logGeneration.generateReport("Test Websites", "Test Report3");
+		logGeneration.generateReport("Test Report3");
 		
 		// Step 1 : Setup browser connection
 		driver = SetBrowser(BrowserType.chrome);
 
 		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
-		
 		driver.quit();
-		logGeneration.extentFlush();
+		
+		try {
+			logGeneration.extentFlush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	
