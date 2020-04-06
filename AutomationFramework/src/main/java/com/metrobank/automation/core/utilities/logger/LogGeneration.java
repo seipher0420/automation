@@ -21,6 +21,8 @@ public class LogGeneration extends ReportGeneration{
 	
 	String tempResultFolder;
   
+	public void inputLogs(LogType type, String description, String screenshot) {
+		
 		switch (type) {
 		case info:
 			test.log(Status.INFO,
@@ -91,7 +93,9 @@ public class LogGeneration extends ReportGeneration{
 					+ "Log Generations");
 
 		}
-	}
+}
+
+	
 	
 	@AfterSuite
 	public void extentFlush() throws IOException{
