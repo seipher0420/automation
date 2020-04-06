@@ -17,6 +17,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import main.java.com.metrobank.automation.core.base.Enums.AlertType;
 import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
+import main.java.com.metrobank.automation.core.base.Enums.LogType;
+import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 
 
 /**
@@ -29,9 +31,12 @@ import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
 public class DriverImpl implements Driver {
 
 	private final WebDriver driver;
+	private final LogGeneration logger;
 	
 	public DriverImpl (WebDriver driver) {
 		this.driver = driver;
+		logger = new LogGeneration();
+		logger.inputLogs(LogType.pass, "Initializing browser...", null);
 	}
 	
 	/************** Base Methods *************/
@@ -81,6 +86,7 @@ public class DriverImpl implements Driver {
 	}
 	@Override
 	public void quit() {
+		logger.inputLogs(LogType.pass, "Quitting browser...", null);
 		driver.quit();
 	}
 	@Override
@@ -92,6 +98,7 @@ public class DriverImpl implements Driver {
 	@Override
 	public void NavigateToUrl(String url) {
 		driver.navigate().to(url);
+		logger.inputLogs(LogType.pass, "Navigating to url-> " + url, null);
 	}
 	@Override
 	public void MaximizeWindow() {
@@ -102,8 +109,6 @@ public class DriverImpl implements Driver {
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript(script);
 	}
-
-
 	@Override
 	public boolean HasAlert() {
 		try {
@@ -113,8 +118,6 @@ public class DriverImpl implements Driver {
             return false;
         }
 	}
-
-
 	@Override
 	public void Alert(AlertType alertType) {
 		switch (alertType) {
@@ -128,8 +131,6 @@ public class DriverImpl implements Driver {
     			break;
     	}
 	}
-
-
 	@Override
 	public void Refresh() {
 		driver.navigate().refresh();

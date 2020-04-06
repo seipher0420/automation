@@ -48,10 +48,10 @@ public class ElementImpl extends WaitHelper implements Element{
 		try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			element.clear();
-			logger.inputLogs(LogType.info, "action:CLEAR \t Element:" + element, null);
+			logger.inputLogs(LogType.info, "action:CLEAR \t element: " + GetLocator(), null);
 //			logger.inputLogs(LogType.info, String.format("Action:CLICK Element:%s", element), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:CLEAR could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:CLEAR could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
@@ -60,21 +60,31 @@ public class ElementImpl extends WaitHelper implements Element{
 		try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			element.click();	
-			logger.inputLogs(LogType.info, "action:CLICK \t Element:" + element, null);
+			logger.inputLogs(LogType.info, "action:CLICK \t element: " + GetLocator(), null);
 //			logger.inputLogs(LogType.info, String.format("Action:CLICK Element:%s", element), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:CLICK could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:CLICK could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
+	}
+	public void sendKeys(String value) {
+		try {
+			WaitUntilElementIsClickable(GetDriver(), element);	
+			element.sendKeys(value);
+			logger.inputLogs(LogType.info, "action:INPUT \t value: {" + value + "} \t element: " + GetLocator(), null);
+		} catch (Exception e) {
+			logger.inputLogs(LogType.warning, "action:INPUTVALUE could not be completed on Element: " + GetLocator(), null);
+			logger.inputLogs(LogType.warning, e.getMessage(), null);
+		}
 	}
 	@Override
 	public void sendKeys(CharSequence... arg0) {
 		try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			element.sendKeys(arg0);
-			logger.inputLogs(LogType.info, "action:INPUT \t value:" + arg0.toString() + " \t element: " + element, null);
+			logger.inputLogs(LogType.info, "action:INPUT \t value: " + arg0 + " \t element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:INPUTVALUE could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:INPUTVALUE could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		}
 	}
@@ -83,9 +93,9 @@ public class ElementImpl extends WaitHelper implements Element{
 		try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			element.submit();
-			logger.inputLogs(LogType.info, "action:SUBMIT \t element:" + element, null);
+			logger.inputLogs(LogType.info, "action:SUBMIT \t element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:SUBMIT could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:SUBMIT could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
@@ -145,54 +155,55 @@ public class ElementImpl extends WaitHelper implements Element{
 	public Element getWrappedElement() {
 		return getWrappedElement();
 	}
+	
 	/**-------------------- Extension Methods ----------------------*/
 	@Override
-	public void doubleClick(WebDriver driver) {
+	public void doubleClick() {
         try {
-        	Actions actionsBuilder = new Actions(driver);
+        	Actions actionsBuilder = new Actions(GetDriver());
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			Action action = actionsBuilder.doubleClick(element).build();
 			action.perform();
-			logger.inputLogs(LogType.info, "action:DOUBLECLICK on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:DOUBLECLICK on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:DOUBLECLICK could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:DOUBLECLICK could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
 	@Override
-	public void rightClick(WebDriver driver) {
+	public void rightClick() {
         try {
-        	Actions actionsBuilder = new Actions(driver);
+        	Actions actionsBuilder = new Actions(GetDriver());
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			Action action = actionsBuilder.contextClick(element).build();
 			action.perform();
-			logger.inputLogs(LogType.info, "action:RIGHTCLICK on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:RIGHTCLICK on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:RIGHTCLICK could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:RIGHTCLICK could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
 	@Override
-	public void hover(WebDriver driver) {
+	public void hover() {
         try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
-			Actions action = new Actions(driver);
+			Actions action = new Actions(GetDriver());
 	        action.moveToElement(element).perform();
-			logger.inputLogs(LogType.info, "action:HOVER on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:HOVER on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:HOVER could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:HOVER could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
 	@Override
-	public void hoverAndClick(WebDriver driver) {
+	public void hoverAndClick() {
         try {
 			WaitUntilElementIsClickable(GetDriver(), element);	
-			Actions action = new Actions(driver);
+			Actions action = new Actions(GetDriver());
 	        action.moveToElement(element).click().build().perform();
-			logger.inputLogs(LogType.info, "action:CLICK on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:CLICK on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:CLICK could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:CLICK could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
@@ -202,9 +213,9 @@ public class ElementImpl extends WaitHelper implements Element{
 			WaitUntilElementIsClickable(GetDriver(), element);	
 			element.clear();
 			sendKeys(value);
-			logger.inputLogs(LogType.info, "action:INPUT \t value:" + value + " \t element: " + element, null);
+			logger.inputLogs(LogType.info, "action:INPUT \t value: " + value + " \t element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:INPUTVALUE could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:INPUTVALUE could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		}
 	}
@@ -214,9 +225,9 @@ public class ElementImpl extends WaitHelper implements Element{
 			WaitUntilElementIsVisible(GetDriver(), element);	
 			Select item = new Select(element);
 			item.selectByValue(text);
-			logger.inputLogs(LogType.info, "action:SELECT on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:SELECT on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:SELECT could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:SELECT could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
@@ -226,9 +237,9 @@ public class ElementImpl extends WaitHelper implements Element{
 //			WaitUntilElementIsClickable(GetDriver(), element);	
 			JavascriptExecutor executor = GetJavascriptExecutor();
 			executor.executeScript("arguments[0].click();", element);
-			logger.inputLogs(LogType.info, "action:jCLICK on element:" + element, null);
+			logger.inputLogs(LogType.info, "action:jCLICK on element: " + GetLocator(), null);
 		} catch (Exception e) {
-			logger.inputLogs(LogType.warning, "action:jCLICK could not be completed on Element:" + element, null);
+			logger.inputLogs(LogType.warning, "action:jCLICK could not be completed on Element: " + GetLocator(), null);
 			logger.inputLogs(LogType.warning, e.getMessage(), null);
 		} 
 	}
@@ -367,7 +378,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	public WebDriver GetDriver(){
 		WrapsDriver wrappedElement = (WrapsDriver)element;
 		if (wrappedElement == null) {
-			logger.inputLogs(LogType.warning, "Element must wrap a web driver Element:" + element, null);
+			logger.inputLogs(LogType.warning, "Element must wrap a web driver Element:" + GetLocator(), null);
 			throw new IllegalArgumentException("Element must wrap a web driver");
 		}
 		return wrappedElement.getWrappedDriver();
@@ -383,5 +394,13 @@ public class ElementImpl extends WaitHelper implements Element{
 //        {
 //            throw new ArgumentException("Element must wrap a web driver that supports javascript execution")
 //        }
+	}
+	
+	private String GetLocator() {
+		String locator = element.toString();
+		locator = locator.substring(locator.indexOf("-> ") + 3);
+		locator = locator.substring(0, locator.lastIndexOf("]"));
+		locator = locator.replaceFirst(":", "->");
+		return locator;
 	}
 }

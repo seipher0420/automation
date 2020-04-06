@@ -20,18 +20,18 @@ public class TestCase03 extends BrowserConnection{
 	@Test
 	public void testCase3() {
 
+		// Set up logger
+		LogGeneration logGeneration = new LogGeneration();
+		logGeneration.generateReport("Test Websites", "Test Report3");
+		
 		// Step 1 : Setup browser connection
 		driver = SetBrowser(BrowserType.chrome);
 
-		LogGeneration logGeneration = new LogGeneration();
-		logGeneration.generateReport("Test Websites", "Test Report2");
-		logGeneration.inputLogs(LogType.pass, "Step 1: Open Browser", null);
-		
 		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
 		
-		logGeneration.extentFlush();
 		driver.quit();
+		logGeneration.extentFlush();
 	}
 	
 	
