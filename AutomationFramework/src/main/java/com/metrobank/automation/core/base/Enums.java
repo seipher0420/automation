@@ -1,7 +1,7 @@
 package main.java.com.metrobank.automation.core.base;
 
 public class Enums {
-	public enum LogType{
+	public enum LogType {
 		info,
 		warning,
 		pass,
@@ -9,5 +9,16 @@ public class Enums {
 		error,
 		fatal,
 		skip
+	}
+	
+	public enum AlertType {
+		accept,
+		dismiss
+	}
+	
+	public enum BrowserType {
+		chrome,
+		ie,
+		firefox
 	}
 }

@@ -14,6 +14,7 @@ import com.aventstack.extentreports.model.Media;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.base.mainConnection;
+import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 
@@ -50,8 +51,7 @@ public class TestCase01 extends mainConnection{
 		logGeneration.inputLogs(LogType.pass,"Step 4: Pass", tempScreenshot);
 	}catch(AssertionError e){
 			tempScreenshot = TestUtil.getScreenshot(driver);
-			logGeneration.inputLogs(LogType.fatal,"Step 4: Not Test Page", tempScreenshot);
-		
+			logGeneration.inputLogs(LogType.fatal,"Step 4: Not Test Page", tempScreenshot);		
 	}
 	driver.navigate().to("http://yahoo.com");
 	TestUtil.waitTime(2);
@@ -62,7 +62,6 @@ public class TestCase01 extends mainConnection{
 	}catch(AssertionError e){
 		tempScreenshot = TestUtil.getScreenshot(driver);
 		logGeneration.inputLogs(LogType.fail, "Step 5: Not Google " + driver.getTitle(), tempScreenshot);
-	
 	}
 	logGeneration.inputLogs(LogType.skip, "Step 6: Skip Test" , tempScreenshot);
 	

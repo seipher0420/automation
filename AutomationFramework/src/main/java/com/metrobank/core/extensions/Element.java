@@ -14,10 +14,11 @@ import org.openqa.selenium.WrapsElement;
  *
  */
 public interface Element extends WebElement, WrapsElement {
-		void doubleClick(WebDriver driver);
-		void rightClick(WebDriver driver);
-		void hover(WebDriver driver);
-		void hoverAndClick(WebDriver driver);
+		void sendKeys(String value);	
+		void doubleClick();
+		void rightClick();
+		void hover();
+		void hoverAndClick();
 		void clearAndSetValue(String value);
 		void SelectByText(String text);
 		
