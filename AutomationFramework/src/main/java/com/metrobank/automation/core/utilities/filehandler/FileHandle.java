@@ -11,7 +11,7 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
-public class FileManipulator {
+public class FileHandle {
 
 	public boolean checkDownloadFile(String filePath){
 		boolean isExisting = false;
