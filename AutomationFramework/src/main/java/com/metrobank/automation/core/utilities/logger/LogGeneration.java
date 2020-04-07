@@ -21,13 +21,14 @@ public class LogGeneration extends ReportGeneration{
 	
 	String tempResultFolder;
   
+	public void inputLogs(LogType type, String description, String screenshot) {
 		switch (type) {
 		case info:
 			test.log(Status.INFO,
 					MarkupHelper.createLabel(description, ExtentColor.BLUE));
 			testSummary.log(Status.INFO,
 					MarkupHelper.createLabel(description, ExtentColor.BLUE));
-      System.out.println(description);
+			System.out.println(description);
 			break;
 
 		case pass:
@@ -37,13 +38,14 @@ public class LogGeneration extends ReportGeneration{
 					MarkupHelper.createLabel(description, ExtentColor.GREEN));
 			tempResultFolder = AutomationConstants.TEST_PASSED;
 			System.out.println(description);
-      break;
+			break;
 
 		case warning:
 			test.log(Status.WARNING,
 					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
 			testSummary.log(Status.WARNING,
 					MarkupHelper.createLabel(description, ExtentColor.ORANGE));
+			System.out.println(description);
 			break;
 
 		case fail:
@@ -54,7 +56,7 @@ public class LogGeneration extends ReportGeneration{
 				testSummary.log(Status.FAIL, description, MediaEntityBuilder
 						.createScreenCaptureFromBase64String(screenshot)
 						.build());
-        System.out.println(description);
+				System.out.println(description);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,7 +72,7 @@ public class LogGeneration extends ReportGeneration{
 				testSummary.log(Status.FATAL, description, MediaEntityBuilder
 						.createScreenCaptureFromBase64String(screenshot)
 						.build());
-        System.out.println(description);
+				System.out.println(description);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -83,7 +85,7 @@ public class LogGeneration extends ReportGeneration{
 					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
 			testSummary.log(Status.SKIP,
 					MarkupHelper.createLabel(description, ExtentColor.INDIGO));
-      System.out.println(description);
+			System.out.println(description);
 			break;
 
 		default:

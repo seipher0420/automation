@@ -7,6 +7,8 @@ import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 import main.java.com.metrobank.automation.pages.Modules.*;
 import main.java.com.metrobank.core.extensions.Driver;
 
+import java.io.IOException;
+
 import org.testng.annotations.Test;
 
 public class TestCase03 extends BrowserConnection{
@@ -18,11 +20,11 @@ public class TestCase03 extends BrowserConnection{
 	String userDirectory;
 	
 	@Test
-	public void testCase3() {
+	public void testCase3() throws IOException {
 
 		// Set up logger
 		LogGeneration logGeneration = new LogGeneration();
-		logGeneration.generateReport("Test Websites", "Test Report3");
+		logGeneration.generateReport("Test Report3");
 		
 		// Step 1 : Setup browser connection
 		driver = SetBrowser(BrowserType.chrome);
