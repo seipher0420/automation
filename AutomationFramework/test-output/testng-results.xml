@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="17774" started-at="2020-04-06T10:20:04Z" finished-at="2020-04-06T10:20:21Z">
+  <suite name="Default suite" duration-ms="19985" started-at="2020-04-07T08:06:04Z" finished-at="2020-04-07T08:06:24Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="17774" started-at="2020-04-06T10:20:04Z" finished-at="2020-04-06T10:20:21Z">
-      <class name="main.java.com.metrobank.automation.testcase.TestCase03">
-        <test-method status="PASS" signature="testCase3()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestCase03@120ebad]" name="testCase3" duration-ms="17750" started-at="2020-04-06T18:20:04Z" finished-at="2020-04-06T18:20:21Z">
+    <test name="Default test" duration-ms="19985" started-at="2020-04-07T08:06:04Z" finished-at="2020-04-07T08:06:24Z">
+      <class name="main.java.com.metrobank.automation.testcase.TestPDFExtract">
+        <test-method status="PASS" signature="testExtract()[pri:0, instance:main.java.com.metrobank.automation.testcase.TestPDFExtract@120ebad]" name="testExtract" duration-ms="19956" started-at="2020-04-07T16:06:04Z" finished-at="2020-04-07T16:06:24Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCase3 -->
-      </class> <!-- main.java.com.metrobank.automation.testcase.TestCase03 -->
+        </test-method> <!-- testExtract -->
+      </class> <!-- main.java.com.metrobank.automation.testcase.TestPDFExtract -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
