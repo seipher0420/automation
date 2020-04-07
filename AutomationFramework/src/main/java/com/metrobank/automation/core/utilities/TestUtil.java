@@ -152,6 +152,10 @@ public class TestUtil {
 			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/"
 					+ strDate + "/FAIL/";
 			break;
+		case "tempFolder":
+			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/"
+					+ strDate + "/TempFolder/";
+			break;
 		default:
 			path = userDirectory + AutomationConstants.TEST_REPORT_FOLDER + "/"
 					+ strDate + "/";
