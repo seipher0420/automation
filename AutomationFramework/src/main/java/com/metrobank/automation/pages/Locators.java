@@ -15,4 +15,5 @@ public class Locators {
 	
 	// Locator-file location and filename
 	public static final String LOGINPAGE = DIR + "/LogInPage/LogInPage.properties";
+	public static final String PRODUCTSPAGE = DIR + "/ProductsPage/ProductsPage.properties";
 }

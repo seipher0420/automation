@@ -33,6 +33,10 @@ public class TestCase03 extends BrowserConnection{
 
 		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
+		
+		Products products = new Products(driver, null);
+		products.AddToCart_BackpackAndOnesie();
+		
 		driver.quit();
 		
 		try {

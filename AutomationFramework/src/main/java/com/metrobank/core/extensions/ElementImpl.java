@@ -121,7 +121,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	}
 	@Override
 	public Element findElement(By by) {
-		return (Element) element.findElement(by);
+		return new ElementImpl(element.findElement(by));
 	}
 	@Override
 	public List<WebElement> findElements(By by) {
@@ -335,7 +335,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getParent() {
 		try {
-			Element parent = findElement(By.xpath("./parent::*"));
+			Element parent = new ElementImpl(findElement(By.xpath("./parent::*")));
 			return parent;
 		}
 		catch (Exception e) {
@@ -345,7 +345,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getChild() {
 		try {
-			Element child = findElement(By.xpath("./child::*"));
+			Element child = new ElementImpl(findElement(By.xpath("./child::*")));
 			return child;
 		}
 		catch (Exception e) {
@@ -355,7 +355,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getNextSibling() {
 		try {
-			Element sibling = findElement(By.xpath("./following-sibling::*"));
+			Element sibling = new ElementImpl(findElement(By.xpath("./following-sibling::*")));
 			return sibling;
 		}
 		catch (Exception e) {
@@ -365,7 +365,7 @@ public class ElementImpl extends WaitHelper implements Element{
 	@Override
 	public Element getPreviousSibling() {
 		try {
-			Element sibling = findElement(By.xpath("./previous-sibling::*"));
+			Element sibling = new ElementImpl(findElement(By.xpath("./previous-sibling::*")));
 			return sibling;
 		}
 		catch (Exception e) {
@@ -397,10 +397,15 @@ public class ElementImpl extends WaitHelper implements Element{
 	}
 	
 	private String GetLocator() {
-		String locator = element.toString();
-		locator = locator.substring(locator.indexOf("-> ") + 3);
-		locator = locator.substring(0, locator.lastIndexOf("]"));
-		locator = locator.replaceFirst(":", "->");
-		return locator;
+		try {
+			String locator = element.toString();
+			locator = locator.substring(locator.indexOf("-> ") + 3);
+			locator = locator.substring(0, locator.lastIndexOf("]"));
+			locator = locator.replaceFirst(":", "->");
+			return locator;
+		} catch (Exception e) {
+			return element.toString();
+		}
+		
 	}
 }
