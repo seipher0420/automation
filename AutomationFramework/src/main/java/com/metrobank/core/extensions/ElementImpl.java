@@ -373,7 +373,7 @@ public class ElementImpl extends WaitHelper implements Element{
 		}
 	}
 	
-	/**---------------- Common Methods -------------------*/
+	/**---------------- Controls Methods -------------------*/
 	@Override
 	public WebDriver GetDriver(){
 		WrapsDriver wrappedElement = (WrapsDriver)element;

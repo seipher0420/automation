@@ -1,5 +1,7 @@
 package main.java.com.metrobank.automation.testcase;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
 
 import main.java.com.metrobank.automation.core.base.*;
@@ -34,8 +36,13 @@ public class TestCase03 extends BrowserConnection{
 		LogIn login = new LogIn(driver, TestData.LOGIN);
 		login.LogInSetup();
 		
-		Products products = new Products(driver, null);
-		products.AddToCart_BackpackAndOnesie();
+		Products products = new Products(driver, TestData.BUYBACKPACKANDJACKET);
+		String refNumber = products.BuyBackpackAndJacket();
+		if (refNumber != null) {
+			logGeneration.inputLogs(LogType.pass, "Reference number -> " + refNumber, null);
+		}
+		
+//		refNumber = refNumber.substring(refNumber.indexOf("#") + 1);
 		
 		driver.quit();
 		

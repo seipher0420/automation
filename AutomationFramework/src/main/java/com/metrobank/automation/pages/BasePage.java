@@ -69,6 +69,16 @@ public abstract class BasePage {
     		return null;
     	}
     }
+    protected Element Image (By by) {
+    	try {
+    		WebElement element = driver.findElement(by);
+        	return new ElementImpl(element);
+    	}
+    	catch (NoSuchElementException e) {
+    		UnableToFind(by);
+    		return null;
+    	}
+    }
     protected Element MenuItem (By by) {
     	try {
     		WebElement element = driver.findElement(by);

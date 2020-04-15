@@ -1,34 +1,29 @@
 package main.java.com.metrobank.automation.pages.Modules;
 
-import org.openqa.selenium.WebDriver;
+import java.util.Arrays;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
+import main.java.com.metrobank.automation.core.base.Validation;
 import main.java.com.metrobank.automation.core.utilities.PropertyFileHandler;
+import main.java.com.metrobank.automation.pages.POM.CheckoutPage.*;
+import main.java.com.metrobank.automation.pages.POM.Controls.Controls;
 import main.java.com.metrobank.automation.pages.POM.ProductsPage.ProductsPage;
 
-public class Products {
+public class Products extends Validation {
 
 	private final WebDriver driver;
-//	private final PropertyFileHandler property;
-	
-	/* Parameters List */
-	private String username;
-	private String password;
-	
+	private final PropertyFileHandler property;
 	
 	public Products (WebDriver driver, String propertyFile) {
+		super(driver);
 		this.driver = driver;
-//		this.property = new PropertyFileHandler(propertyFile);
-		// Get all test data and parameter values
-//		InitializeParameters();
+		this.property = new PropertyFileHandler(propertyFile);
 	}
 	
-	public void InitializeParameters() {
-		
-	}
-
 	public void AddToCart_Backpack() {
 		ProductsPage productsPage = new ProductsPage(driver);
-		
 		productsPage.ClickBackPackAddToCart();
 	}
 	
@@ -38,5 +33,27 @@ public class Products {
 		productsPage.ClickBackPackAddToCart();
 		productsPage.ClickOnesieAddToCart();
 		
+	}
+	
+	public String BuyBackpackAndJacket() {
+		ProductsPage productsPage = new ProductsPage(driver);
+		YourCartPage yourCartPage = new YourCartPage(driver);
+		YourInformationPage yourInformationPage = new YourInformationPage(driver);
+		OverviewPage overviewPage = new OverviewPage(driver);
+		Controls controls = new Controls(driver);
+		
+		productsPage.ClickBackPackAddToCart().ClickFleeceJacketAddToCart();
+		controls.ViewCart();
+		yourCartPage.Checkout();
+		yourInformationPage.EnterFirstName(property.GetValue("firstname"))
+		.EnterLastName(property.GetValue("lastname"))
+		.EnterZipCode(property.GetValue("zipcode"))
+		.Continue();
+		ValidatePage(Arrays.asList("Sauce Labs Backpack", "Sauce Labs Fleece Jacket"));
+//		Assert.assertTrue(ValidateThatObjectExists("hello"));
+		String reference = overviewPage.GetReferenceNumber();
+		overviewPage.Finish();
+		
+		return reference;
 	}
 }
