@@ -5,6 +5,7 @@ import main.java.com.metrobank.automation.core.utilities.PropertyFileHandler;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 import main.java.com.metrobank.core.extensions.*;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -26,8 +27,9 @@ public abstract class BrowserConnection {
 	String url;
 	String userDirectory;
 	Driver driver;
+	WebDriver webDriver;
 	
-	public Driver SetBrowser(BrowserType browser) {
+	public WebDriver SetBrowser(BrowserType browser) {
 		
 		InitializeParameters();
 		
@@ -36,9 +38,12 @@ public abstract class BrowserConnection {
 		// Google Chrome Browser
 		case chrome:
 			System.setProperty("webdriver.chrome.driver",userDirectory + chromeDriver);
-			driver = new DriverImpl(new ChromeDriver());
-			driver.MaximizeWindow();
-			driver.NavigateToUrl(url);
+			webDriver = new ChromeDriver();
+			webDriver.manage().window().maximize();
+			webDriver.navigate().to(url);	
+//			driver = new DriverImpl(new ChromeDriver());
+//			driver.MaximizeWindow();
+//			driver.NavigateToUrl(url);
 			break;
 		
 		// Internet Explorer Browser
@@ -65,7 +70,7 @@ public abstract class BrowserConnection {
 	    	break;
 		}
 		
-		return driver;
+		return webDriver;
 	}
 	
 	private void InitializeParameters() {

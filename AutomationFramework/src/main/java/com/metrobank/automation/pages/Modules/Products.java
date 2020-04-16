@@ -49,7 +49,7 @@ public class Products extends Validation {
 		.EnterLastName(property.GetValue("lastname"))
 		.EnterZipCode(property.GetValue("zipcode"))
 		.Continue();
-		ValidatePage(Arrays.asList("Sauce Labs Backpack", "Sauce Labs Fleece Jacket"));
+		ValidatePage(Arrays.asList("Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt"));
 //		Assert.assertTrue(ValidateThatObjectExists("hello"));
 		String reference = overviewPage.GetReferenceNumber();
 		overviewPage.Finish();

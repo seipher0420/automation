@@ -44,11 +44,7 @@ public class LogGeneration extends ReportGeneration{
 				testSummary.log(Status.INFO,
 						MarkupHelper.createLabel(description, ExtentColor.BLUE));
 			}
-			
-			
-			
-		
-      System.out.println(description);
+			System.out.println(description);
 			break;
 
 		case pass:
