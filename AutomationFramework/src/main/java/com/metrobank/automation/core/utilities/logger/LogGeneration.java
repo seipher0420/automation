@@ -25,11 +25,30 @@ public class LogGeneration extends ReportGeneration{
 
 		switch (type) {
 		case info:
-			test.log(Status.INFO,
-					MarkupHelper.createLabel(description, ExtentColor.BLUE));
-			testSummary.log(Status.INFO,
-					MarkupHelper.createLabel(description, ExtentColor.BLUE));
-			System.out.println(description);
+			if(screenshot != null){
+				try {
+					test.log(Status.INFO, description, MediaEntityBuilder
+							.createScreenCaptureFromBase64String(screenshot)
+							.build());
+					testSummary.log(Status.INFO, description, MediaEntityBuilder
+							.createScreenCaptureFromBase64String(screenshot)
+							.build());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+			}else{
+				test.log(Status.INFO,
+						MarkupHelper.createLabel(description, ExtentColor.BLUE));
+				testSummary.log(Status.INFO,
+						MarkupHelper.createLabel(description, ExtentColor.BLUE));
+			}
+			
+			
+			
+		
+      System.out.println(description);
 			break;
 
 		case pass:

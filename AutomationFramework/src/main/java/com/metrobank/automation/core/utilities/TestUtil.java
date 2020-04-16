@@ -1,6 +1,7 @@
 package main.java.com.metrobank.automation.core.utilities;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -173,6 +175,15 @@ public class TestUtil {
 		}
 		return path;
 	}
+	
+	  public static String encodeFileToBase64Binary(File file) throws Exception{
+          FileInputStream fileInputStreamReader = new FileInputStream(file);
+          byte[] bytes = new byte[(int)file.length()];
+          fileInputStreamReader.read(bytes);
+          return new String(Base64.encodeBase64(bytes), "UTF-8");
+      }
+	
+
 
 }
 		
