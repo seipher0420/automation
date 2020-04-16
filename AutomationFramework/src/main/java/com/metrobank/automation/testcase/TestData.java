@@ -15,4 +15,5 @@ public class TestData {
 	
 	// Test Data Filename
 	public static final String LOGIN = DIR + "LogIn.properties";
+	public static final String BUYBACKPACKANDJACKET = DIR + "BuyBackpackAndJacket.properties";
 }

@@ -10,6 +10,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 
 import main.java.com.metrobank.automation.core.utilities.PropertyFileHandler;
+import main.java.com.metrobank.automation.pages.Locators;
 import main.java.com.metrobank.automation.pages.POM.LogInPage.*;
 
 /**
