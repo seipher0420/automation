@@ -31,7 +31,7 @@ public class DemoTestCase extends BrowserConnection{
 		
 		// Set up logger
 		LogGeneration logger = new LogGeneration();
-		logger.generateReport("Test Report3");
+		logger.generateReport("Sample Test Report");
 		
 		// Step 1 : Setup browser connection
 		driver = SetBrowser(BrowserType.chrome);

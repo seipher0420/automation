@@ -13,17 +13,17 @@ public class LogInPage extends BasePage {
 	}
 	
 	public LogInPage ClickLoginButton() {
-		Button(By.cssSelector(getLocator("loginBtnCss"))).click();
+		Button("loginBtn_css").click();
 		return this;
 	}
 	
 	public LogInPage EnterUsername(String value) {
-		Textbox(By.id(getLocator("usernameId"))).sendKeys(value);
+		Textbox("username_id").sendKeys(value);
 		return this;
 	}
 	
 	public LogInPage EnterPassword(String value) {
-		Textbox(By.id(getLocator("passwordId"))).sendKeys(value);
+		Textbox("password_id").sendKeys(value);
 		return this;
 	}
 	
