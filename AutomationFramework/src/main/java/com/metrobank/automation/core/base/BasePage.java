@@ -1,4 +1,4 @@
-package main.java.com.metrobank.automation.pages;
+package main.java.com.metrobank.automation.core.base;
 
 import java.io.FileInputStream;
 import java.io.IOException;

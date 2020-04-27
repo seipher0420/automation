@@ -48,10 +48,23 @@ public class LogGeneration extends ReportGeneration{
 			break;
 
 		case pass:
-			test.log(Status.PASS,
-					MarkupHelper.createLabel(description, ExtentColor.GREEN));
-			testSummary.log(Status.PASS,
-					MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			if(screenshot != null){
+				try {
+					test.log(Status.PASS, description, MediaEntityBuilder
+							.createScreenCaptureFromBase64String(screenshot)
+							.build());
+					testSummary.log(Status.PASS, description, MediaEntityBuilder
+							.createScreenCaptureFromBase64String(screenshot)
+							.build());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+			}else{
+				test.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+				testSummary.log(Status.PASS, MarkupHelper.createLabel(description, ExtentColor.GREEN));
+			}
 			tempResultFolder = AutomationConstants.TEST_PASSED;
 			System.out.println(description);
 			break;

@@ -2,7 +2,8 @@ package main.java.com.metrobank.automation.pages.POM.LogInPage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import main.java.com.metrobank.automation.pages.BasePage;
+
+import main.java.com.metrobank.automation.core.base.BasePage;
 import main.java.com.metrobank.automation.pages.Locators;
 
 public class LogInPage extends BasePage {

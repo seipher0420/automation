@@ -1,7 +1,9 @@
 package main.java.com.metrobank.automation.core.base;
 
 import main.java.com.metrobank.automation.core.base.Enums.BrowserType;
+import main.java.com.metrobank.automation.core.base.Enums.LogType;
 import main.java.com.metrobank.automation.core.utilities.PropertyFileHandler;
+import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 import main.java.com.metrobank.automation.generics.AutomationConstants;
 import main.java.com.metrobank.core.extensions.*;
 
@@ -32,6 +34,7 @@ public abstract class BrowserConnection {
 	public WebDriver SetBrowser(BrowserType browser) {
 		
 		InitializeParameters();
+		LogGeneration logger = new LogGeneration();
 		
 		switch (browser) {
 		
@@ -68,6 +71,16 @@ public abstract class BrowserConnection {
 	    default :
 	    	System.out.println("Driver not compatible");
 	    	break;
+		}
+		
+		if (webDriver != null) {
+			logger.inputLogs(LogType.pass, "Initializing browser...", null);
+			webDriver.manage().window().maximize();
+			webDriver.navigate().to(url);
+			logger.inputLogs(LogType.pass, "Navigating to url-> " + url, null);
+		}
+		else {
+			System.out.println("Driver initialization failed");
 		}
 		
 		return webDriver;
