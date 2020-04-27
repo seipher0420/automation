@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="main.java.com.metrobank.automation.testcase.TestPDFExtract">
+      <class name="main.java.com.metrobank.automation.testcase.DemoTestCase">
         <methods>
-          <include name="testExtract"/>
+          <include name="testCase"/>
         </methods>
-      </class> <!-- main.java.com.metrobank.automation.testcase.TestPDFExtract -->
+      </class> <!-- main.java.com.metrobank.automation.testcase.DemoTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,4 +1,4 @@
-package main.java.com.metrobank.automation.pages;
+package main.java.com.metrobank.automation.core.base;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -169,9 +169,168 @@ public abstract class BasePage {
     		return null;
     	}
     }
+    
+  //**================== via String Locator Constants =====================**//
+  	protected Element Button (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+      		return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+  	protected Element Textbox (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+  	protected Element Label (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Image (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element MenuItem (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element TabItem (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Checkbox (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element RadioButton (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Dropdown (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Link (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element HyperLink (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Window (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+      protected Element Element (String locator) {
+      	try {
+      		WebElement element = driver.findElement(by(locator));
+          	return new ElementImpl(element);
+      	}
+      	catch (NoSuchElementException e) {
+      		UnableToFind(locator);
+      		return null;
+      	}
+      }
+  	
+      //**========================== Common Methods ==========================**//
+  	protected By by(String locator) {
+  		By by = null;
+  		
+  		String type = locator.substring(locator.indexOf("_") + 1);
+  		switch (type) {
+  		case "id" :
+  			by = By.id(getLocator(locator));
+  			break;
+  		case "xpath" :
+  			by = By.xpath(getLocator(locator));
+  			break;
+  		case "css" :
+  			by = By.cssSelector(getLocator(locator));
+  			break;
+  		default :
+  			break;
+  		}
+  		
+  		return by;
+  	}
     protected String getLocator(String value) {
     	return property.GetValue(value);
     }
+    
+  	private void UnableToFind(String locator) {
+  		description = "Unable to locate element : "+ locator ;
+  		logger.inputLogs(LogType.warning, description, null);
+  	}
 	private void UnableToFind(By by) {
 		description = "Unable to locate element : "+ by ;
 		logger.inputLogs(LogType.warning, description, null);
