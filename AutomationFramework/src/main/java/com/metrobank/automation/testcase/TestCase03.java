@@ -13,6 +13,7 @@ import main.java.com.metrobank.core.extensions.Driver;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 public class TestCase03 extends BrowserConnection{
@@ -20,7 +21,7 @@ public class TestCase03 extends BrowserConnection{
 //	WebDriver driver;
 	String chromeDriver;
 	String url;
-	Driver driver;
+	WebDriver driver;
 	String userDirectory;
 	
 	@Test

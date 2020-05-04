@@ -3,6 +3,7 @@ package main.java.com.metrobank.automation.core.base;
 import org.testng.Assert;
 
 import main.java.com.metrobank.automation.core.base.Enums.LogType;
+import main.java.com.metrobank.automation.core.utilities.TestUtil;
 import main.java.com.metrobank.automation.core.utilities.logger.LogGeneration;
 
 import java.util.List;
@@ -30,11 +31,30 @@ public class Validation {
 			}
 			else
 			{
-				logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), null);
+				logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), TestUtil.getScreenshot(driver));
 				return false;
 			}
 		} catch (Exception e) {
-			logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), null);
+			logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), TestUtil.getScreenshot(driver));
+			return false;
+		}
+	}
+	
+	public boolean ValidateThatObjectExists(String parameter, boolean takeScreenshot) {
+		try {
+			String xpath = String.format("//*[contains(text(), '%s')]", parameter);
+			WebElement element = driver.findElement(By.xpath(xpath));
+			if (element != null) {
+				logger.inputLogs(LogType.pass, String.format("Parameter:{%s} exists", parameter), TestUtil.getScreenshot(driver));
+				return true;
+			}
+			else
+			{
+				logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), TestUtil.getScreenshot(driver));
+				return false;
+			}
+		} catch (Exception e) {
+			logger.inputLogs(LogType.fail, String.format("Parameter:{%s} does NOT exist", parameter), TestUtil.getScreenshot(driver));
 			return false;
 		}
 	}

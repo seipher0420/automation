@@ -3,7 +3,7 @@ package main.java.com.metrobank.automation.pages.POM.CheckoutPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import main.java.com.metrobank.automation.pages.BasePage;
+import main.java.com.metrobank.automation.core.base.BasePage;
 import main.java.com.metrobank.automation.pages.Locators;
 
 public class OverviewPage extends BasePage {
