@@ -18,4 +18,8 @@ public class Locators {
 	public static final String LOGINPAGE = DIR + "/LogInPage/LogInPage.properties";
 	public static final String PRODUCTSPAGE = DIR + "/ProductsPage/ProductsPage.properties";
 	public static final String CHECKOUTPAGE = DIR + "/CheckoutPage/CheckoutPage.properties";
+	
+	public static final String OUTSTANDINGPAGE = DIR + "/OustandingPage/OustandingPage.properties";
+	public static final String ALLPRODUCTSPAGE = DIR + "/AllProductsPage/allproductspage.properties";
+	public static final String FORVERIFICATIONPAGE = DIR + "/ForVerificationPage/forverificationpage.properties";
 }
